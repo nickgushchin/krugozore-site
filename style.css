@@ -212,7 +212,7 @@ p, li { text-wrap: pretty; }
 }
 .intertitle::before {
   /* the OR gate, same geometry as the app icon */
-  content: ""; position: absolute; left: 50%; top: -54px; width: 34px; height: 24px; transform: translateX(-50%);
+  content: ""; position: absolute; left: 50%; top: -50px; width: 52px; height: 20px; transform: translateX(-50%);
   background: var(--orange);
   -webkit-mask: url("assets/img/gate.svg") center / contain no-repeat; mask: url("assets/img/gate.svg") center / contain no-repeat;
 }
