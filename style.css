@@ -110,10 +110,11 @@ p, li { text-wrap: pretty; }
 /* ── Hero ────────────────────────────────────────────── */
 .hero { position: relative; overflow: hidden; padding: 28px 20px 72px; text-align: center; isolation: isolate; }
 .hero-gate {
-  position: absolute; z-index: -1; left: 50%; top: 6px; width: min(1100px, 190vw);
+  position: absolute; z-index: -1; left: 50%; top: 6px; width: min(980px, 94vw);
   transform: translateX(-50%);
-  fill: none; stroke: var(--orange); stroke-width: 1.4; opacity: 0.22;
+  height: auto; fill: none; stroke: var(--orange); stroke-width: 1.4; opacity: 0.22;
 }
+.hero-gate path { vector-effect: non-scaling-stroke; }
 .hero-inner { max-width: 860px; margin: 0 auto; }
 .icon-wrap { position: relative; width: 156px; margin: 8px auto 30px; }
 .icon-wrap::before {
@@ -210,11 +211,13 @@ p, li { text-wrap: pretty; }
   border-image: url("assets/img/intertitle-frame.png") 80 fill / 40px stretch;
 }
 .intertitle::before {
-  content: ""; position: absolute; left: 50%; top: -49px; width: 68px; height: 18px; transform: translateX(-50%);
-  background: url("assets/img/intertitle-fleuron.png") center / 68px 18px no-repeat;
+  /* the OR gate, same geometry as the app icon */
+  content: ""; position: absolute; left: 50%; top: -54px; width: 34px; height: 24px; transform: translateX(-50%);
+  background: var(--orange);
+  -webkit-mask: url("assets/img/gate.svg") center / contain no-repeat; mask: url("assets/img/gate.svg") center / contain no-repeat;
 }
 .sepia .intertitle { border-image-source: url("assets/img/intertitle-frame-sepia.png"); }
-.sepia .intertitle::before { background-image: url("assets/img/intertitle-fleuron-sepia.png"); }
+.sepia .intertitle::before { background: var(--sepia-ornament); }
 .intertitle .line {
   font: 700 clamp(21px, 2.4vw, 26px)/1.25 var(--serif); color: var(--cream); margin: -10px -8px 8px;
 }
@@ -225,7 +228,7 @@ p, li { text-wrap: pretty; }
 .sepia .intertitle .sub { color: var(--sepia-ornament); }
 .means { color: rgba(244, 239, 228, 0.86); font-size: 17px; margin: 0; padding: 0 4px; }
 .means::before {
-  content: "What it means"; display: block; margin-bottom: 6px;
+  content: none; display: none; margin-bottom: 6px;
   font: 700 11.5px/1 var(--sans); letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244, 239, 228, 0.6);
 }
 
