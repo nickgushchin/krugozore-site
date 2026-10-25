@@ -1,0 +1,17 @@
+# Ygor
+
+> Ygor is a private AI assistant app for iPhone and iPad (iOS 26.5 or later), made in Zurich by Nick Gushchin. Open AI language models run directly on the device: chats are processed and stored on the iPhone, there is no Ygor server and no account. Formerly called Krugozore AI.
+
+## Key facts
+- On-device AI: models run on the iPhone; works offline once a model is downloaded.
+- Privacy: no account, no server; only what the user switches on leaves the device (e.g. a web search they start). Privacy policy: https://ygor.app/privacy/
+- Models: Apple Intelligence (on-device), Qwen3 4B and 1.7B, Qwen3-VL 4B and 2B (vision), LFM2.5 2.6B and 1.2B (Liquid AI), Gemma 4 E2B (Google), Granite 4.1 3B (IBM), Ternary Bonsai 8B and 4B (Prism ML), Bonsai Image 4B (on-device image generation).
+- Honest trade-off: small local models are slower and know less than the largest cloud models; the app shows quality and speed ratings per model.
+- Name: "Ygor", pronounced "Eee-gor": the faithful lab assistant who carries the lantern of AI.
+- Status: coming soon to the App Store.
+- Contact: hello@ygor.app
+
+## Pages
+- [Home](https://ygor.app/): what Ygor is, how it works, the models, privacy, FAQ
+- [Privacy policy](https://ygor.app/privacy/)
+- [Support](https://ygor.app/support/)
