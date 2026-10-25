@@ -3,32 +3,411 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Krugozore AI · Private AI chat, your own key</title>
-<meta name="description" content="Krugozore AI is a privacy-first AI chat app for iPhone and iPad. One OpenRouter key, every model, all chats stored on your device.">
+<title>Ygor · Private AI that lives on your iPhone</title>
+<meta name="description" content="Ygor is a private AI assistant for iPhone. Open AI models run on the phone itself, chats are saved on the device, and nothing goes to a cloud.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F4EFE4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#100E0C" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://ygor.app/">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ygor · Private AI that lives on your iPhone">
+<meta property="og:description" content="Your faithful lab assistant carries the lantern of AI onto your iPhone. On-device models, chats saved on the device, no cloud.">
+<meta property="og:url" content="https://ygor.app/">
+<meta property="og:image" content="https://ygor.app/assets/img/ygor-icon-512.png">
+<link rel="preload" href="assets/fonts/Fraunces.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<main>
-<header class="site">
-  <a href="./">Krugozore AI</a>
-  <nav><a href="privacy/">Privacy</a><a href="support/">Support</a></nav>
+<body class="home">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <a class="mark" href="./" aria-label="Ygor home">
+    <img src="assets/img/ygor-icon-240.webp" alt="" width="32" height="32">
+    <span>YGOR</span>
+  </a>
+  <nav aria-label="Main">
+    <a href="#story">Story</a>
+    <a href="#models">Models</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
-<h1>Private AI chat, your own key.</h1>
-<p class="meta">For iPhone, iPad and Apple silicon Mac</p>
+<main id="main">
 
-<p class="lede">One OpenRouter key, every AI model, and every chat stored on your device. No account, no server, no tracking.</p>
+<!-- Hero -->
+<section class="hero" aria-labelledby="hero-title">
+  <svg class="hero-gate" viewBox="0 0 400 240" aria-hidden="true" focusable="false">
+    <path d="M40 20 C190 20 300 70 360 120 C300 170 190 220 40 220 C78 160 78 80 40 20 Z" />
+    <path d="M0 85 H66 M0 155 H66 M360 120 H400" />
+  </svg>
+  <div class="hero-inner">
+    <div class="icon-wrap">
+      <img class="app-icon" src="assets/img/ygor-icon-480.webp" srcset="assets/img/ygor-icon-240.webp 240w, assets/img/ygor-icon-480.webp 480w" sizes="(min-width: 700px) 200px, 156px" width="200" height="200" alt="The Ygor app icon: a hunched lab assistant in silhouette carries a glowing lantern marked AI through a cream OR-gate on Ygor Orange." fetchpriority="high">
+    </div>
+    <p class="kicker">Ygor <span aria-hidden="true">·</span> say <em>Eee-gor</em></p>
+    <h1 id="hero-title">AI that never leaves your&nbsp;iPhone.</h1>
+    <p class="deck">Ygor is your faithful lab assistant. He carries AI models onto your iPhone and runs them right there: your chats are saved on the device, and no cloud AI ever sees them.</p>
+    <p class="honest">Small local models are sometimes a little slower than the giants in a data centre. That's the price of keeping everything to yourself, and we think it's a fair trade.</p>
+    <div class="cta">
+      <span class="store-badge" role="img" aria-label="Coming soon to the App Store">
+        <span class="sb-small">Coming soon to the</span>
+        <span class="sb-big">App Store</span>
+      </span>
+      <a class="text-link" href="#story">See how it works <span aria-hidden="true">↓</span></a>
+    </div>
+    <ul class="facts" aria-label="At a glance">
+      <li>No account</li>
+      <li>No cloud</li>
+      <li>Works offline</li>
+      <li>iPhone &amp; iPad</li>
+    </ul>
+  </div>
+</section>
 
-<ul>
-  <li><strong>Every model.</strong> Hundreds of models from every major maker through one key, including free ones that cost nothing.</li>
-  <li><strong>Your device, your data.</strong> Chats, files and progress live in the app's own storage on your device. The developer has no server to receive them.</li>
-  <li><strong>Honest about where words go.</strong> A shield in every chat shows whether a model runs on your device, is sent to a provider, or may train on your prompts.</li>
-  <li><strong>On-device too.</strong> Apple Intelligence and downloadable on-device models work with no key and no network.</li>
-</ul>
+<!-- Story -->
+<section class="story" id="story" aria-labelledby="story-title">
+  <div class="story-head">
+    <svg class="fleuron" viewBox="0 0 68 18" width="68" height="18" aria-hidden="true" focusable="false"><path d="M0 6.5h19M0 11.5h19M48 9h20" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M14 2.5C30 2.5 40 5 48 9C40 13 30 15.5 14 15.5C17.5 11.5 17.5 6.5 14 2.5Z" fill="currentColor"/></svg>
+    <p class="eyebrow">The first run, frame by frame</p>
+    <h2 id="story-title">A picture in eight&nbsp;reels</h2>
+    <p class="lede">The first time you open Ygor, he shows you around like a silent film: eight short frames, each with his own line on an intertitle card. Here they are, with what each one means for you.</p>
+  </div>
 
-<p><a href="privacy/">Privacy Policy</a> · <a href="support/">Support</a></p>
+  <ol class="reels">
+    <li class="reel sepia">
+      <figure class="reel-art">
+        <img src="assets/img/scene-01-480.webp" srcset="assets/img/scene-01-480.webp 480w, assets/img/scene-01-720.webp 720w" sizes="(min-width: 900px) 360px, 80vw" width="720" height="960" loading="lazy" decoding="async" alt="Ygor raises his lantern in greeting on a night platform at the Ygor station.">
+      </figure>
+      <div class="reel-text">
+        <p class="reel-no">Reel I</p>
+        <blockquote class="intertitle">
+          <p class="line">I'm Ygor. Eee-gor. Your AI assistant.</p>
+          <p class="sub">Let me show you around.</p>
+        </blockquote>
+        <p class="means">Ygor is the assistant who lives inside the app. You can give him another name later. He works on your iPhone, not on a server, so the tour starts with where your data lives.</p>
+      </div>
+    </li>
 
-<footer>© 2026 Nikolay Gushchin · Krugozore AI · <a href="mailto:krugozore.ios.app@gmail.com">krugozore.ios.app@gmail.com</a><br>Not related to the Telegram bot of the same name.</footer>
+    <li class="reel">
+      <figure class="reel-art">
+        <img src="assets/img/scene-02-480.webp" srcset="assets/img/scene-02-480.webp 480w, assets/img/scene-02-720.webp 720w" sizes="(min-width: 900px) 360px, 80vw" width="720" height="960" loading="lazy" decoding="async" alt="Ygor shoos cloud servers away beside a phone showing documents stored on the iPhone.">
+      </figure>
+      <div class="reel-text">
+        <p class="reel-no">Reel II</p>
+        <blockquote class="intertitle">
+          <p class="line">I don't trust clouds. Your iPhone has the brain and the storage.</p>
+          <p class="sub">Your chats and files stay here.</p>
+        </blockquote>
+        <p class="means">Every chat is saved as a file in Ygor's own storage on your iPhone, together with the photos and documents you attach. There's no Ygor account and no Ygor server, so your conversations have nowhere else to go.</p>
+      </div>
+    </li>
+
+    <li class="reel">
+      <figure class="reel-art">
+        <img src="assets/img/scene-03-480.webp" srcset="assets/img/scene-03-480.webp 480w, assets/img/scene-03-720.webp 720w" sizes="(min-width: 900px) 360px, 80vw" width="720" height="960" loading="lazy" decoding="async" alt="Ygor holds a snail flask beside a phone showing a downloaded local model that can use tools.">
+      </figure>
+      <div class="reel-text">
+        <p class="reel-no">Reel III</p>
+        <blockquote class="intertitle">
+          <p class="line">Small local models: smart, a bit slower.</p>
+          <p class="sub">Fair trade: fully private. Like any AI, I can make mistakes — double-check anything important.</p>
+        </blockquote>
+        <p class="means">Ygor doesn't rent a giant model in a data centre. He downloads a small open model once and runs it on your phone's own chip, so it even works offline. You see the download size before anything starts, and a reply can take a moment longer.</p>
+      </div>
+    </li>
+
+    <li class="reel">
+      <figure class="reel-art">
+        <img src="assets/img/scene-04-480.webp" srcset="assets/img/scene-04-480.webp 480w, assets/img/scene-04-720.webp 720w" sizes="(min-width: 900px) 360px, 80vw" width="720" height="960" loading="lazy" decoding="async" alt="Ygor patches a cable into a phone showing the Ygor Smart Group.">
+      </figure>
+      <div class="reel-text">
+        <p class="reel-no">Reel IV</p>
+        <blockquote class="intertitle">
+          <p class="line">Don't switch models — a Smart Group picks the best one.</p>
+          <p class="sub">Start with mine: Ygor Smart Group.</p>
+        </blockquote>
+        <p class="means">Different models are good at different things. A Smart Group decides, on your iPhone, which of your models answers each message, so you never have to switch by hand.</p>
+      </div>
+    </li>
+
+    <li class="reel">
+      <figure class="reel-art">
+        <img src="assets/img/scene-05-480.webp" srcset="assets/img/scene-05-480.webp 480w, assets/img/scene-05-720.webp 720w" sizes="(min-width: 900px) 360px, 80vw" width="720" height="960" loading="lazy" decoding="async" alt="Ygor holds a catalogue card beside a phone showing the model filters.">
+      </figure>
+      <div class="reel-text">
+        <p class="reel-no">Reel V</p>
+        <blockquote class="intertitle">
+          <p class="line">More models wait in the catalog.</p>
+          <p class="sub">Filter, pick, download.</p>
+        </blockquote>
+        <p class="means">Browse open models from Qwen, Liquid AI, IBM, Google and Prism ML. Filter by what they can do (text, vision, tools, reasoning) and download only the ones you want. Delete any of them when you need the space back.</p>
+      </div>
+    </li>
+
+    <li class="reel">
+      <figure class="reel-art">
+        <img src="assets/img/scene-06-480.webp" srcset="assets/img/scene-06-480.webp 480w, assets/img/scene-06-720.webp 720w" sizes="(min-width: 900px) 360px, 80vw" width="720" height="960" loading="lazy" decoding="async" alt="Ygor holds a medal beside a phone showing the My Flex badges.">
+      </figure>
+      <div class="reel-text">
+        <p class="reel-no">Reel VI</p>
+        <blockquote class="intertitle">
+          <p class="line">Earn a badge for everything you try.</p>
+          <p class="sub">Open them all: become Master of Ygor.</p>
+        </blockquote>
+        <p class="means">My Flex turns exploring into a game. Each feature you try earns a badge, and you climb from Lab Apprentice to Master of Ygor. Your progress is kept on your iPhone and goes nowhere else.</p>
+      </div>
+    </li>
+
+    <li class="reel">
+      <figure class="reel-art">
+        <img src="assets/img/scene-07-480.webp" srcset="assets/img/scene-07-480.webp 480w, assets/img/scene-07-720.webp 720w" sizes="(min-width: 900px) 360px, 80vw" width="720" height="960" loading="lazy" decoding="async" alt="Ygor holds a dripping brush beside a phone showing the assistant name and colour swatches.">
+      </figure>
+      <div class="reel-text">
+        <p class="reel-no">Reel VII</p>
+        <blockquote class="intertitle">
+          <p class="line">Give me a name, pick your colors.</p>
+        </blockquote>
+        <p class="means">Call your assistant whatever you like and choose the app's accent colour. Ygor Orange is only the default.</p>
+      </div>
+    </li>
+
+    <li class="reel">
+      <figure class="reel-art">
+        <img src="assets/img/scene-08-480.webp" srcset="assets/img/scene-08-480.webp 480w, assets/img/scene-08-720.webp 720w" sizes="(min-width: 900px) 360px, 80vw" width="720" height="960" loading="lazy" decoding="async" alt="Ygor rings a bell beside a phone showing the notification toggles.">
+      </figure>
+      <div class="reel-text">
+        <p class="reel-no">Reel VIII</p>
+        <blockquote class="intertitle">
+          <p class="line">Want a nudge when I have something for you?</p>
+        </blockquote>
+        <p class="means">Reminders, weekly and monthly recaps and streak nudges are all optional. They're worked out and scheduled on your iPhone, with no push server. Switch any of them off with one tap.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- Models -->
+<section class="models" id="models" aria-labelledby="models-title">
+  <div class="section-head">
+    <p class="eyebrow">What's on the shelf</p>
+    <h2 id="models-title">Twelve brains, one&nbsp;pocket</h2>
+    <p class="lede">Every model below runs on your iPhone. Apple's comes with iOS. The others you download once from Hugging Face, with the size shown before anything starts, and delete whenever you like.</p>
+  </div>
+
+  <h3 class="shelf-label"><span>Built in</span></h3>
+  <div class="specimens">
+    <article class="spec">
+      <p class="maker">Made by Apple <span>Cupertino, California</span></p>
+      <h4>Apple Intelligence</h4>
+      <p class="fact">Apple's on-device foundation model. It ships with iOS and changes with it.</p>
+      <ul class="tags"><li>Text</li><li>No download</li></ul>
+      <dl class="rating">
+        <div><dt>Quality</dt><dd class="nr">Not rated yet</dd></div>
+        <div><dt>Speed</dt><dd class="nr">Not rated yet</dd></div>
+      </dl>
+      <p class="needs">Needs iPhone 15 Pro or newer, with Apple Intelligence turned on.</p>
+    </article>
+  </div>
+
+  <h3 class="shelf-label"><span>Text &amp; reasoning</span></h3>
+  <div class="specimens">
+    <article class="spec">
+      <p class="maker">Made by Alibaba Cloud <span>Qwen Team, Hangzhou</span></p>
+      <h4>Qwen3 4B <span>Reasoning</span></h4>
+      <p class="fact">Switches between thinking and non-thinking modes in one model.</p>
+      <ul class="tags"><li>Text</li><li>Thinks first</li><li>Uses tools</li></ul>
+      <dl class="rating">
+        <div><dt>Quality</dt><dd><span class="dots d5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>High</dd></div>
+        <div><dt>Speed</dt><dd><span class="dots d3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Medium</dd></div>
+      </dl>
+      <p class="needs"><b>2.28 GB</b> · 8 GB memory (iPhone 15 Pro or newer) · Apache 2.0</p>
+    </article>
+
+    <article class="spec">
+      <p class="maker">Made by Liquid AI <span>Cambridge, Massachusetts</span></p>
+      <h4>LFM2.5 2.6B <span>Reasoning</span></h4>
+      <p class="fact">Post-trained with agentic reinforcement learning; 128K-token context window.</p>
+      <ul class="tags"><li>Text</li><li>Thinks first</li></ul>
+      <dl class="rating">
+        <div><dt>Quality</dt><dd><span class="dots d5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>High</dd></div>
+        <div><dt>Speed</dt><dd class="nr">Not rated yet</dd></div>
+      </dl>
+      <p class="needs"><b>1.54 GB</b> · 6 GB memory (iPhone 14 / 13 Pro or newer) · LFM Open License v1.0</p>
+    </article>
+
+    <article class="spec">
+      <p class="maker">Made by Google DeepMind <span>London</span></p>
+      <h4>Gemma 4 E2B</h4>
+      <p class="fact">2.3B effective parameters. Text only in Ygor.</p>
+      <ul class="tags"><li>Text</li></ul>
+      <dl class="rating">
+        <div><dt>Quality</dt><dd><span class="dots d4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>High</dd></div>
+        <div><dt>Speed</dt><dd><span class="dots d4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Fast</dd></div>
+      </dl>
+      <p class="needs"><b>3.58 GB</b> · 12 GB memory (iPhone 17 Pro or iPhone Air) · Apache 2.0</p>
+    </article>
+
+    <article class="spec">
+      <p class="maker">Made by Prism ML <span>built from Qwen3-8B</span></p>
+      <h4>Ternary Bonsai 8B</h4>
+      <p class="fact">Ternary weights (−1, 0, +1) across the whole network, stored at 2 bits per weight.</p>
+      <ul class="tags"><li>Text</li></ul>
+      <dl class="rating">
+        <div><dt>Quality</dt><dd><span class="dots d4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>High</dd></div>
+        <div><dt>Speed</dt><dd><span class="dots d3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Medium</dd></div>
+      </dl>
+      <p class="needs"><b>2.32 GB</b> · 8 GB memory (iPhone 15 Pro or newer) · Apache 2.0</p>
+    </article>
+
+    <article class="spec">
+      <p class="maker">Made by Alibaba Cloud <span>Qwen Team, Hangzhou</span></p>
+      <h4>Qwen3 1.7B <span>Reasoning</span></h4>
+      <p class="fact">Trained for 119 languages and dialects.</p>
+      <ul class="tags"><li>Text</li><li>Thinks first</li><li>Uses tools</li></ul>
+      <dl class="rating">
+        <div><dt>Quality</dt><dd><span class="dots d3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Medium</dd></div>
+        <div><dt>Speed</dt><dd><span class="dots d5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Fast</dd></div>
+      </dl>
+      <p class="needs"><b>984 MB</b> · 4 GB memory (iPhone 11 or newer, except iPhone SE 2nd generation) · Apache 2.0</p>
+    </article>
+
+    <article class="spec">
+      <p class="maker">Made by IBM <span>Granite Team, Armonk, New York</span></p>
+      <h4>Granite 4.1 3B</h4>
+      <p class="fact">Supports 12 languages, including German and French.</p>
+      <ul class="tags"><li>Text</li></ul>
+      <dl class="rating">
+        <div><dt>Quality</dt><dd><span class="dots d3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Medium</dd></div>
+        <div><dt>Speed</dt><dd class="nr">Not rated yet</dd></div>
+      </dl>
+      <p class="needs"><b>2.13 GB</b> · 8 GB memory (iPhone 15 Pro or newer) · Apache 2.0</p>
+    </article>
+
+    <article class="spec">
+      <p class="maker">Made by Liquid AI <span>Cambridge, Massachusetts</span></p>
+      <h4>LFM2.5 1.2B <span>Instruct</span></h4>
+      <p class="fact">A hybrid of convolution and attention blocks, trained on 28 trillion tokens.</p>
+      <ul class="tags"><li>Text</li></ul>
+      <dl class="rating">
+        <div><dt>Quality</dt><dd><span class="dots d3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Medium</dd></div>
+        <div><dt>Speed</dt><dd><span class="dots d5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Fast</dd></div>
+      </dl>
+      <p class="needs"><b>663 MB</b> · 4 GB memory (iPhone 11 or newer, except iPhone SE 2nd generation) · LFM Open License v1.0</p>
+    </article>
+
+    <article class="spec">
+      <p class="maker">Made by Prism ML <span>built from Qwen3-4B</span></p>
+      <h4>Ternary Bonsai 4B</h4>
+      <p class="fact">Ternary weights, compressed from Qwen3-4B to about 1 GB.</p>
+      <ul class="tags"><li>Text</li></ul>
+      <dl class="rating">
+        <div><dt>Quality</dt><dd><span class="dots d2" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Low</dd></div>
+        <div><dt>Speed</dt><dd><span class="dots d4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Fast</dd></div>
+      </dl>
+      <p class="needs"><b>1.14 GB</b> · 6 GB memory (iPhone 14 / 13 Pro or newer) · Apache 2.0</p>
+    </article>
+  </div>
+
+  <h3 class="shelf-label"><span>Vision</span></h3>
+  <div class="specimens">
+    <article class="spec">
+      <p class="maker">Made by Alibaba Cloud <span>Qwen Team, Hangzhou</span></p>
+      <h4>Qwen3-VL 4B <span>Vision</span></h4>
+      <p class="fact">Looks at the photos you attach. Reads text in 32 languages.</p>
+      <ul class="tags"><li>Text</li><li>Sees images</li><li>Uses tools</li></ul>
+      <dl class="rating">
+        <div><dt>Quality</dt><dd><span class="dots d4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>High</dd></div>
+        <div><dt>Speed</dt><dd class="nr">Not rated yet</dd></div>
+      </dl>
+      <p class="needs"><b>3.11 GB</b> · 8 GB memory (iPhone 15 Pro or newer) · Apache 2.0</p>
+    </article>
+
+    <article class="spec">
+      <p class="maker">Made by Alibaba Cloud <span>Qwen Team, Hangzhou</span></p>
+      <h4>Qwen3-VL 2B <span>Vision</span></h4>
+      <p class="fact">The smaller eye: looks at attached photos on more iPhones.</p>
+      <ul class="tags"><li>Text</li><li>Sees images</li><li>Uses tools</li></ul>
+      <dl class="rating">
+        <div><dt>Quality</dt><dd><span class="dots d2" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Low</dd></div>
+        <div><dt>Speed</dt><dd class="nr">Not rated yet</dd></div>
+      </dl>
+      <p class="needs"><b>1.8 GB</b> · 6 GB memory (iPhone 14 / 13 Pro or newer) · Apache 2.0</p>
+    </article>
+  </div>
+
+  <h3 class="shelf-label"><span>Pictures</span></h3>
+  <div class="specimens">
+    <article class="spec spec-image">
+      <p class="maker">Made by Prism ML <span>from Black Forest Labs' FLUX.2 klein 4B</span></p>
+      <h4>Bonsai Image 4B</h4>
+      <p class="fact">Paints pictures from a text prompt, right on the phone, in four steps.</p>
+      <ul class="tags"><li>Makes pictures</li></ul>
+      <dl class="rating">
+        <div><dt>Time</dt><dd>About 9 s per 512 px picture <small>(Prism ML's figure, iPhone 17 Pro Max)</small></dd></div>
+      </dl>
+      <p class="needs"><b>3.87 GB</b> · 8 GB memory (iPhone 15 Pro or newer) · Apache 2.0</p>
+    </article>
+  </div>
+
+  <div class="footnote">
+    <p><b>How to read the dots.</b> Quality is the Ygor Lab test v2: 120 automatically scored items, run on 24 October 2026 on the exact files the app downloads. Speed comes from public measurements on iPhone 17 Pro and Pro Max (community tests and Prism ML's own figures) until our own speed test covers every model. Both compare on-device models with each other, not with cloud AI, and one dot apart is within test noise.</p>
+    <p>Model names belong to their makers. Ygor isn't affiliated with or endorsed by any of them.</p>
+  </div>
+</section>
+
+<!-- Privacy -->
+<section class="privacy" id="privacy" aria-labelledby="privacy-title">
+  <div class="section-head">
+    <p class="eyebrow">House rules</p>
+    <h2 id="privacy-title">What stays, and the little that&nbsp;leaves</h2>
+  </div>
+  <ol class="rules">
+    <li>
+      <h3>Your chats live on your iPhone.</h3>
+      <p>They're saved as files in Ygor's own storage, with the photos and documents you attach. Nothing syncs on its own. A chat leaves only when you export or share it.</p>
+    </li>
+    <li>
+      <h3>Every model thinks on the device.</h3>
+      <p>Each model in Ygor runs on your iPhone, so your prompts stay on your iPhone.</p>
+    </li>
+    <li>
+      <h3>There is no Ygor server.</h3>
+      <p>No account, no login, no telemetry, no analytics, no crash reporting. There's nowhere for us to receive your chats, so we don't.</p>
+    </li>
+    <li>
+      <h3>Only what you switch on goes out.</h3>
+      <p>With <b>Web search</b> on, a short query the assistant writes goes to Parallel Search. With <b>Weather</b> on, a place name goes to OpenStreetMap and its coordinates to Open-Meteo. Model files come from Hugging Face when you start a download. Your message and your conversation are never sent.</p>
+    </li>
+    <li>
+      <h3>One button erases it all.</h3>
+      <p>Delete all my data wipes everything Ygor has stored. So does deleting the app.</p>
+    </li>
+  </ol>
+  <p class="policy-link"><a href="privacy/">Read the full privacy policy <span aria-hidden="true">→</span></a></p>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact" aria-labelledby="contact-title">
+  <svg class="fleuron" viewBox="0 0 68 18" width="68" height="18" aria-hidden="true" focusable="false"><path d="M0 6.5h19M0 11.5h19M48 9h20" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M14 2.5C30 2.5 40 5 48 9C40 13 30 15.5 14 15.5C17.5 11.5 17.5 6.5 14 2.5Z" fill="currentColor"/></svg>
+  <h2 id="contact-title">Write to&nbsp;us</h2>
+  <p>Found a bug? Know a small model Ygor should test? Or just want to say hello? Send word to the lab.</p>
+  <a class="mail-btn" href="mailto:hello@ygor.app">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M3 6.5h18v11H3z M3.6 7l8.4 6.4L20.4 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    hello@ygor.app
+  </a>
+  <p class="small">It opens your own mail app. No forms, no trackers.</p>
+</section>
+
 </main>
+
+<footer class="foot">
+  <p>© 2026 Nick Gushchin <span aria-hidden="true">·</span> <a href="privacy/">Privacy</a> <span aria-hidden="true">·</span> <a href="mailto:hello@ygor.app">Contact</a></p>
+  <p class="made">Made in Zurich</p>
+</footer>
 </body>
 </html>
