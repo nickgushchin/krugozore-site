@@ -30,12 +30,12 @@
 <main id="main" class="doc legal">
 
 <h1>Privacy Policy</h1>
-<p class="meta">Version 1.2 · Effective 18 September 2026 · Applies to the Ygor app for iPhone, iPad and Apple silicon Mac</p>
+<p class="meta">Version 1.1 · Effective 25 October 2026 · Applies to the Ygor app (formerly Krugozore AI) for iPhone, iPad and Apple silicon Mac</p>
 
-<p class="lede">Ygor has no account, no login and no server of its own. Your chats stay on your device. The only time your words leave it is when you send them to an AI model you chose, using your own key.</p>
+<p class="lede">Ygor has no account, no login and no server of its own. Every AI model in Ygor runs on your device, so your chats and prompts stay there. The app goes online only to download models you choose, and, if you leave them on, for the small lookups of Weather and Web search described below.</p>
 
 <h2>Who is responsible</h2>
-<p>Ygor is developed and published by <strong>Nikolay Gushchin</strong>, an independent developer based in Switzerland. Questions about this policy: <a href="mailto:krugozore.ios.app@gmail.com">krugozore.ios.app@gmail.com</a>.</p>
+<p>Ygor is developed and published by <strong>Nikolay Gushchin</strong>, an independent developer based in Zurich, Switzerland. Questions about this policy: <a href="mailto:support@ygor.app">support@ygor.app</a>.</p>
 <p>The Ygor app for iPhone and iPad (formerly Krugozore AI) is not related to the Telegram bot named Krugozore AI. The two are separate products with different architectures, ideas and technology stacks; nothing described on this page applies to the bot, and nothing the bot does applies to this app.</p>
 
 <h2>What Ygor collects</h2>
@@ -45,29 +45,24 @@
 <ol class="clauses">
   <li>Your chats are saved as files in Ygor's own storage on your device, together with the photos, audio and files you attach. For some documents, Ygor keeps the text it extracted rather than the original file.</li>
   <li>My Flex progress and your 👍/👎 reply ratings are saved on your device too.</li>
-  <li>Your OpenRouter API key is stored in the iOS Keychain. The app shows only a masked hint of it. The key itself is sent to OpenRouter whenever Ygor talks to your account; that is how OpenRouter knows the request is yours.</li>
+  <li>Models you download are stored on your device.</li>
   <li>Nothing syncs automatically. A chat or file leaves your device through Export or Share only when you choose to send it somewhere.</li>
-  <li>Profile › Data › Delete all my data erases everything the app stored. Deleting the app does the same.</li>
+  <li>Profile › Data › Delete all my data erases everything the app stored, including anything it kept in the iOS Keychain. Deleting the app removes its files too.</li>
 </ol>
 
-<h2>When you ask a cloud model</h2>
+<h2>When you ask a model</h2>
 <ol class="clauses">
-  <li>Your message goes to OpenRouter (<a href="https://openrouter.ai">openrouter.ai</a>), which passes it to the provider of the model you chose. It carries the conversation context sent with it and any photos, documents, audio or voice message you include.</li>
-  <li>The app asks for your permission before the first message is sent to a cloud model, and again before hands-free voice conversations and voice messages leave the device.</li>
-  <li>A voice message is held in memory while it is sent; the recording is not saved in your chat files.</li>
-  <li>When you choose a model that runs on your device (Apple Intelligence or a downloaded on-device model), your prompts stay on your device.</li>
-  <li>Images and videos a model creates may be downloaded from web addresses its provider supplies, which are not always on openrouter.ai.</li>
-  <li><strong>Free models may train on your data.</strong> That includes the photos, documents and audio you send to them. The chat's shield, the model card, and the notices when you choose or first use a free model always say so.</li>
+  <li>Every model in this version runs on your device: Apple's on-device Apple Intelligence model, or an open model you downloaded. Your prompts, the conversation and anything you attach are processed on your device and are not sent to any AI provider.</li>
+  <li>Voice input is transcribed by Apple's speech recognition on your device; Ygor uses it only where on-device recognition is available. A voice message is held in memory while it is processed; the recording is not saved in your chat files.</li>
+  <li>The Weather and Web search tools, if you leave them on, make their own small lookups (clause 5.1 and 5.2). They send a place name or a short query the model writes, never your message or the conversation.</li>
+  <li>Chats from an earlier version may contain replies from cloud models, including free models that may have used your prompts, photos, documents and audio for training. In those chats, the chat's shield still says so.</li>
 </ol>
-<p class="after-clauses">OpenRouter's handling of your requests is governed by the <a href="https://openrouter.ai/privacy">OpenRouter privacy policy</a>. Each model provider's own policy governs what it keeps; OpenRouter shows each model's data policy on its model page, and Ygor shows it on the model card and the shield.</p>
 
-<h2>Other network requests</h2>
+<h2>Network requests</h2>
 <ol class="clauses">
-  <li><strong>Weather.</strong> Only the place name goes to <a href="https://nominatim.openstreetmap.org">nominatim.openstreetmap.org</a> to find it, then that place's coordinates go to <a href="https://open-meteo.com">api.open-meteo.com</a> for the forecast. Never your conversation, never your device's location.</li>
-  <li><strong>On-device models.</strong> Model and tokenizer files are downloaded from <a href="https://huggingface.co">huggingface.co</a> when you start a download.</li>
-  <li><strong>Model rankings.</strong> Public Arena leaderboard data is fetched from datasets-server.huggingface.co.</li>
-  <li><strong>OpenRouter</strong> also provides the model catalogue, the key check, and your credit and usage figures.</li>
-  <li><strong>Connecting to OpenRouter.</strong> When you tap Connect with OpenRouter, you sign in on openrouter.ai. OpenRouter then sends you back through one page of this site, <a href="../connect/">inofc.github.io/krugozore-site/connect/</a>, whose only job is to hand you over to the app. It carries a one-time code that is useless outside your device, and the page keeps nothing. GitHub hosts this site and sees an ordinary internet request.</li>
+  <li><strong>Weather.</strong> Only the place name goes to <a href="https://nominatim.openstreetmap.org">nominatim.openstreetmap.org</a> (OpenStreetMap) to find it, then that place's coordinates go to <a href="https://open-meteo.com">api.open-meteo.com</a> for the forecast. Never your conversation, never your device's location.</li>
+  <li><strong>Web search.</strong> A short query the assistant writes goes to Parallel Search (<a href="https://parallel.ai">search.parallel.ai</a>), without an account and without your message or the conversation. The same applies when Ygor looks for pictures on the web because no image model can run on your device: nothing is sent until you tap Search, and the results are shown as link cards built from the search response, with no images loaded from the sites found. If a Parallel key was entered in a test build, it is kept only in the iOS Keychain, sent only with these searches, and removed by Delete all my data.</li>
+  <li><strong>Model downloads.</strong> Model and tokenizer files, and the list of files that make up a model, are downloaded from <a href="https://huggingface.co">huggingface.co</a> when you start a download.</li>
 </ol>
 <p class="after-clauses">These requests fetch information or files. They don't carry your prompts. Each service named above is run by someone else. It sees an ordinary internet request, including your IP address, and its own policy governs what it keeps.</p>
 
@@ -75,19 +70,20 @@
 <p>Buying or restoring Ygor Lifetime is handled by Apple through the App Store. Ygor checks the purchase on your device using StoreKit and stores no payment details. Apple's <a href="https://www.apple.com/legal/privacy/">privacy policy</a> applies to the transaction.</p>
 
 <h2>Links and mail</h2>
-<p>Links you tap, such as OpenRouter account pages, the leaderboard or acknowledgements, open that website because you asked to. Send feedback opens Mail with a message you write and send yourself; the draft lists only the app version, iOS version, device model and language.</p>
+<p>Links you tap, such as a web search result or the acknowledgements, open that website in Safari because you asked to. Send feedback opens Mail with a message to <a href="mailto:support@ygor.app">support@ygor.app</a> that you write and send yourself; the draft lists only the app version, iOS version, device model and language.</p>
 
 <h2>Notifications</h2>
-<p>Reminders, new-model alerts, streak notices and reports are optional local notifications scheduled on your device. There is no push server.</p>
+<p>Reminders, streak notices and reports are optional local notifications scheduled on your device. There is no push server.</p>
 
 <h2>Children</h2>
 <p>Ygor is rated for ages 16 and up on the App Store and is not directed at children.</p>
 
 <h2>Your rights</h2>
-<p>Because the developer holds no personal data about you, there is nothing for the developer to access, correct, export or delete on your behalf. Everything the app stores is on your device and under your control. For data held by OpenRouter or a model provider, contact that service directly.</p>
+<p>Because the developer holds no personal data about you, there is nothing for the developer to access, correct, export or delete on your behalf. Everything the app stores is on your device and under your control. If you write to support, your email is used only to answer you; you can ask for it to be deleted at any time. For data held by a service named above, contact that service directly.</p>
 
 <h2>Changes</h2>
 <p>If a network destination is added, removed or changed, this policy and the in-app Privacy screen (Profile › About › Privacy) change in the same app update. The effective date and version above are updated with each change. Sections and clauses are numbered so an amendment can name exactly what moved, for example "clause 4.3".</p>
+<p>Version 1.1 removed the OpenRouter connection: Ygor no longer sends messages to OpenRouter or any cloud model provider, and an OpenRouter key saved by an earlier version is deleted from the Keychain when 1.1 first starts.</p>
 </main>
 <footer class="foot">
   <p>© 2026 Nick Gushchin <span aria-hidden="true">·</span> <a href="./">Privacy</a> <span aria-hidden="true">·</span> <a href="mailto:hello@ygor.app">Contact</a></p>
