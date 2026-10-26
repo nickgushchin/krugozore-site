@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ygor in numbers · Ygor</title>
+<meta name="description" content="Public statistics for ygor.app: page views in the last 30 days, where visitors came from, and how many people get Ygor updates. Counted without cookies or IP addresses.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src https://ygor-site.jai-twin.workers.dev; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://ygor.app/stats/">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../style.css">
+<script src="../assets/js/site.js" defer></script>
+<script src="../assets/js/stats.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../" aria-label="Ygor home">
+    <img src="../assets/img/ygor-icon-240.webp" alt="" width="32" height="32">
+    <span>YGOR</span>
+  </a>
+  <nav aria-label="Main">
+    <a href="../#models">Models</a>
+    <a href="../privacy/">Privacy</a>
+    <a href="../support/">Support</a>
+    <a href="../#contact">Contact</a>
+  </nav>
+</header>
+<main id="main" class="doc stats">
+
+<h1>Ygor in numbers</h1>
+<p class="meta">Website statistics for ygor.app · last 30 days · refreshed every 5 minutes</p>
+
+<p class="lede">Counted without cookies or IP addresses. Each page load adds one to a daily tally of page, day and rough source, and that tally is all that's kept. Nobody is followed from page to page.</p>
+
+<p class="stats-fallback" id="stats-fallback">The charts need a little JavaScript. The raw figures are public too: <a href="https://ygor-site.jai-twin.workers.dev/stats">stats as JSON</a>.</p>
+<p class="stats-error" id="stats-error" role="status" hidden></p>
+
+<div class="stats-live" id="stats-live" hidden>
+  <div class="stats-hero">
+    <div class="tile tile-big"><p class="num" id="s-visits">–</p><p class="lab">page views in the last 30 days</p></div>
+    <div class="tile"><p class="num" id="s-today">–</p><p class="lab">today so far (UTC)</p></div>
+    <div class="tile"><p class="num" id="s-subs">–</p><p class="lab">people get Ygor updates</p></div>
+  </div>
+  <p class="stats-note" id="s-updated"></p>
+
+  <h2 id="perday-title">Per day</h2>
+  <figure class="chart" aria-labelledby="perday-title" aria-describedby="perday-summary">
+    <p class="chart-max" id="s-max" aria-hidden="true"></p>
+    <ol class="bars" id="s-bars" aria-hidden="true"></ol>
+    <p class="axis" aria-hidden="true"><span id="s-first"></span><span id="s-last"></span></p>
+    <figcaption class="stats-note" id="perday-summary"></figcaption>
+  </figure>
+  <details class="chart-table">
+    <summary>Show as a table</summary>
+    <table>
+      <thead><tr><th scope="col">Day (UTC)</th><th scope="col">Page views</th></tr></thead>
+      <tbody id="s-table"></tbody>
+    </table>
+  </details>
+
+  <h2>Where visitors came from</h2>
+  <dl class="hbars" id="s-sources"></dl>
+  <p class="stats-note">Only the website a visitor came from is looked at, sorted into these groups. "Direct" includes links from apps and mail, and browsers that hide where they came from.</p>
+
+  <h2>Pages</h2>
+  <dl class="hbars" id="s-pages"></dl>
+
+  <h2>How it's counted</h2>
+  <p>Each page sends one small request when it opens: the page's name and the name of the website you came from, nothing more. There are no cookies, nothing is stored in your browser, and your IP address is used for a minute only to stop floods and never saved. Visitors who block scripts aren't counted. The update count includes confirmed addresses only. Details in the <a href="../privacy/#updates">privacy policy</a>; raw figures: <a href="https://ygor-site.jai-twin.workers.dev/stats">stats as JSON</a>.</p>
+</div>
+
+</main>
+<footer class="foot">
+  <p>© 2026 Nick Gushchin <span aria-hidden="true">·</span> <a href="../privacy/">Privacy</a> <span aria-hidden="true">·</span> <a href="./" aria-current="page">Stats</a> <span aria-hidden="true">·</span> <a href="mailto:hello@ygor.app">Contact</a></p>
+  <p class="made">Made in Zurich</p>
+</footer>
+</body>
+</html>

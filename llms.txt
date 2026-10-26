@@ -9,9 +9,12 @@
 - Honest trade-off: small local models are slower and know less than the largest cloud models; the app shows quality and speed ratings per model.
 - Name: "Ygor", pronounced "Eee-gor": the faithful lab assistant who carries the lantern of AI.
 - Status: coming soon to the App Store.
+- Website: counts page views without cookies or IP addresses (totals public at https://ygor.app/stats/); optional double opt-in email updates. The app itself collects nothing.
 - Contact: hello@ygor.app
 
 ## Pages
 - [Home](https://ygor.app/): what Ygor is, how it works, the models, privacy, FAQ
 - [Privacy policy](https://ygor.app/privacy/)
 - [Support](https://ygor.app/support/)
+- [Stats](https://ygor.app/stats/): public website statistics, counted without cookies or IP addresses
+- [Updates by email](https://ygor.app/#updates): double opt-in list for new versions, models and features

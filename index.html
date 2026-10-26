@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ygor · Private AI that lives on your iPhone</title>
 <meta name="description" content="Ygor is a private AI assistant for iPhone. Open AI models run on the phone itself, chats are saved on the device, and nothing goes to a cloud.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; connect-src https://ygor-site.jai-twin.workers.dev; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#F4EFE4" media="(prefers-color-scheme: light)">
@@ -30,6 +30,8 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Ygor?", "acceptedAnswer": {"@type": "Answer", "text": "Ygor is a private AI assistant app for iPhone and iPad. It runs open AI language models directly on the device, so conversations are processed and stored on your iPhone instead of in a cloud."}}, {"@type": "Question", "name": "Does Ygor send my chats to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. Ygor has no server and no account. Chats, files and photos you attach are saved in the app's storage on your iPhone. Only what you explicitly switch on leaves the device, for example a web search you start."}}, {"@type": "Question", "name": "Does Ygor work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Once a model is downloaded, chatting works without an internet connection. You need the internet only to download models and for optional features such as web search."}}, {"@type": "Question", "name": "Which AI models does Ygor run?", "acceptedAnswer": {"@type": "Answer", "text": "Apple's on-device model (Apple Intelligence) plus downloadable open models: Qwen3 4B and 1.7B, Qwen3-VL 4B and 2B (they can see photos), LFM2.5 2.6B and 1.2B by Liquid AI, Gemma 4 E2B by Google, Granite 4.1 3B by IBM, Ternary Bonsai 8B and 4B by Prism ML, and Bonsai Image 4B for making pictures on the device."}}, {"@type": "Question", "name": "Is a local model as good as ChatGPT?", "acceptedAnswer": {"@type": "Answer", "text": "Not for everything. Small on-device models are a little slower and know less than the largest cloud models. In exchange nothing leaves your phone. Ygor shows quality and speed ratings for every model so you can pick the right one."}}, {"@type": "Question", "name": "Who makes Ygor?", "acceptedAnswer": {"@type": "Answer", "text": "Ygor is built in Zurich, Switzerland, by Nick Gushchin. Write to hello@ygor.app."}}]}</script>
 <link rel="preload" href="assets/fonts/Fraunces.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/subscribe.js" defer></script>
 </head>
 <body class="home">
 <a class="skip" href="#main">Skip to content</a>
@@ -413,6 +415,38 @@
   </div>
 </section>
 
+<!-- Updates -->
+<section class="updates" id="updates" aria-labelledby="updates-title">
+  <div class="section-head">
+    <p class="eyebrow">Updates by email</p>
+    <h2 id="updates-title">Letters from the&nbsp;lab</h2>
+    <p class="lede">Ygor sends word when there's news: a new version, a new model on the shelf, a new trick. No news, no letter.</p>
+  </div>
+  <div class="signup-card">
+    <p class="signup-fallback" id="signup-fallback">To get updates, write to <a href="mailto:support@ygor.app?subject=Send%20me%20Ygor%20updates">support@ygor.app</a> with the subject “Send me Ygor updates”. We'll add you by hand and confirm by email.</p>
+    <form class="signup" id="signup" hidden novalidate aria-describedby="signup-fine">
+      <label class="signup-label" for="signup-email">Your email</label>
+      <input class="signup-input" id="signup-email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" maxlength="254" required aria-describedby="signup-status">
+      <div class="check">
+        <input type="checkbox" id="signup-ygor" name="consent_ygor" required aria-describedby="signup-status">
+        <label for="signup-ygor">Send me Ygor updates: new versions, models and features.</label>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="signup-other" name="consent_other">
+        <label for="signup-other">Also tell me about other products and projects by Nick Gushchin.</label>
+      </div>
+      <div class="signup-turnstile" id="signup-turnstile"></div>
+      <button class="signup-btn" type="submit">Keep me posted</button>
+      <p class="signup-status" id="signup-status" role="status" aria-live="polite"></p>
+      <p class="signup-fine" id="signup-fine">Double opt-in: we send one confirmation email first. Unsubscribe anytime with one click. We keep only your email and these choices. <a href="privacy/#updates">Privacy policy</a>.</p>
+    </form>
+    <div class="signup-done" id="signup-done" tabindex="-1" hidden>
+      <h3>Check your inbox.</h3>
+      <p>If the address is new to us, a confirmation email from hello@ygor.app is on its way. Click the link inside within 7 days. Nothing there? Look in spam, or try again in ten minutes.</p>
+    </div>
+  </div>
+</section>
+
 <section class="contact" id="contact" aria-labelledby="contact-title">
   <svg class="fleuron" viewBox="-16 17 130 66" width="52" height="26" aria-hidden="true" focusable="false" fill="currentColor" stroke="currentColor"><path d="M6 18.75C43.8 18.75 78 28.13 96 50C78 71.87 43.8 81.25 6 81.25Q30.3 50 6 18.75Z"/><path d="M-16 34.38H16.11M-16 65.62H16.11M95 50H114" fill="none" stroke-width="4"/></svg>
   <h2 id="contact-title">Write to&nbsp;us</h2>
@@ -421,13 +455,13 @@
     <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M3 6.5h18v11H3z M3.6 7l8.4 6.4L20.4 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
     hello@ygor.app
   </a>
-  <p class="small">It opens your own mail app. No forms, no trackers.</p>
+  <p class="small">It opens your own mail app. No contact form, no trackers.</p>
 </section>
 
 </main>
 
 <footer class="foot">
-  <p>© 2026 Nick Gushchin <span aria-hidden="true">·</span> <a href="privacy/">Privacy</a> <span aria-hidden="true">·</span> <a href="mailto:hello@ygor.app">Contact</a></p>
+  <p>© 2026 Nick Gushchin <span aria-hidden="true">·</span> <a href="privacy/">Privacy</a> <span aria-hidden="true">·</span> <a href="stats/">Stats</a> <span aria-hidden="true">·</span> <a href="mailto:hello@ygor.app">Contact</a></p>
   <p class="made">Made in Zurich</p>
 </footer>
 </body>

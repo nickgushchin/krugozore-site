@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy · Ygor</title>
 <meta name="description" content="Ygor privacy policy: what stays on your iPhone, what leaves it, and to whom.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src https://ygor-site.jai-twin.workers.dev; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="light dark">
 <link rel="canonical" href="https://ygor.app/privacy/">
 <link rel="icon" type="image/png" href="../assets/favicon.png">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <link rel="stylesheet" href="../style.css">
+<script src="../assets/js/site.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -30,7 +31,7 @@
 <main id="main" class="doc legal">
 
 <h1>Privacy Policy</h1>
-<p class="meta">Version 1.1 · Effective 25 October 2026 · Applies to the Ygor app (formerly Krugozore AI) for iPhone, iPad and Apple silicon Mac</p>
+<p class="meta">Version 1.2 · Effective 26 October 2026 · Applies to the Ygor app (formerly Krugozore AI) for iPhone, iPad and Apple silicon Mac, and in section 11 to the ygor.app website and its update emails</p>
 
 <p class="lede">Ygor has no account, no login and no server of its own. Every AI model in Ygor runs on your device, so your chats and prompts stay there. The app goes online only to download models you choose, and, if you leave them on, for the small lookups of Weather and Web search described below.</p>
 
@@ -40,6 +41,7 @@
 
 <h2>What Ygor collects</h2>
 <p>Nothing. There is no telemetry, no analytics, no crash reporting, no advertising and no tracking. The developer has no server that could receive your chats, your prompts, your model choices or your usage, and therefore does not receive them.</p>
+<p>This is about the app. The ygor.app website counts page views without cookies and offers an optional email list; both are described in <a href="#updates">section 11</a> and have nothing to do with the app.</p>
 
 <h2>What stays on your device</h2>
 <ol class="clauses">
@@ -79,14 +81,28 @@
 <p>Ygor is rated for ages 16 and up on the App Store and is not directed at children.</p>
 
 <h2>Your rights</h2>
-<p>Because the developer holds no personal data about you, there is nothing for the developer to access, correct, export or delete on your behalf. Everything the app stores is on your device and under your control. If you write to support, your email is used only to answer you; you can ask for it to be deleted at any time. For data held by a service named above, contact that service directly.</p>
+<p>For the app, the developer holds no personal data about you, so there is nothing for the developer to access, correct, export or delete on your behalf. Everything the app stores is on your device and under your control. If you joined the update list (section 11), you can ask at <a href="mailto:support@ygor.app">support@ygor.app</a> what is stored about you, have it corrected or deleted, and withdraw your consent at any time. If you write to support, your email is used only to answer you; you can ask for it to be deleted at any time. For data held by a service named above, contact that service directly. You can also complain to a data protection authority; in Switzerland that is the FDPIC.</p>
+
+<h2 id="updates">The ygor.app website and update emails</h2>
+<p>This section is about the website, not the app.</p>
+<ol class="clauses">
+  <li><strong>Hosting.</strong> The website is served by GitHub Pages (GitHub, Inc., USA). Like any web host, it receives an ordinary request from your browser, including your IP address, and GitHub's own <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">privacy statement</a> governs what it keeps. The site sets no cookies and stores nothing in your browser.</li>
+  <li><strong>Page counting.</strong> When a page of ygor.app opens, it sends one request to our counter: the page's name (home, privacy, support or stats) and the name of the website you came from, sorted into a group such as search engine, LinkedIn or direct. The counter adds one to a tally per day, page and group and keeps nothing else: no cookie, no identifier, no full web addresses, no IP address. Your IP address is used for about a minute, only inside Cloudflare's rate limiter, to stop floods. The tallies are public at <a href="../stats/">ygor.app/stats</a> and are kept for about 400 days.</li>
+  <li><strong>The update list.</strong> If you sign up, we store your email address, which boxes you ticked, the version of the wording you saw (currently 2026-10-26), when you signed up and confirmed, and a hashed form of your confirmation code. “Send me Ygor updates” (required) means emails about new versions, models and features of Ygor. “Also tell me about other products and projects by Nick Gushchin” (optional) means occasional emails about his other work. Your address is used for nothing else and is never sold or shared for anyone else's marketing.</li>
+  <li><strong>Consent and double opt-in.</strong> The legal basis is your consent (Art. 6(1)(a) GDPR where it applies, and consent under the Swiss Federal Act on Data Protection). After you sign up, we send one confirmation email, and nothing else arrives until you click its link. The form is protected by Cloudflare Turnstile, which loads from Cloudflare only once you start using the form and checks that a person, not a script, is signing up.</li>
+  <li><strong>Who processes it.</strong> The list is stored by Cloudflare, Inc. (USA) in its D1 database, located in Western Europe, and the counter runs on Cloudflare Workers. Emails are sent by Resend (Resend, Inc., USA), which receives your address and the message for that purpose. Both act as processors under their data processing terms, and data may be processed in the USA. Our emails carry no tracking pixels and no tracked links.</li>
+  <li><strong>How long.</strong> Until you unsubscribe. Sign-ups that aren't confirmed within 7 days are deleted automatically. When you unsubscribe, everything is deleted except your address and the date, kept only as a suppression record so the address is never emailed again by mistake. Ask, and we delete that too.</li>
+  <li><strong>Unsubscribing and deletion.</strong> Every email has a one-click unsubscribe link. To see, correct or delete what is stored, write to <a href="mailto:support@ygor.app">support@ygor.app</a>.</li>
+</ol>
+<p class="after-clauses">None of this involves the app: the app still collects nothing (section 2).</p>
 
 <h2>Changes</h2>
 <p>If a network destination is added, removed or changed, this policy and the in-app Privacy screen (Profile › About › Privacy) change in the same app update. The effective date and version above are updated with each change. Sections and clauses are numbered so an amendment can name exactly what moved, for example "clause 4.3".</p>
+<p>Version 1.2 (26 October 2026) added section 11 about the ygor.app website: cookieless page counting and the optional update list. Nothing changed in the app.</p>
 <p>Version 1.1 removed the OpenRouter connection: Ygor no longer sends messages to OpenRouter or any cloud model provider, and an OpenRouter key saved by an earlier version is deleted from the Keychain when 1.1 first starts.</p>
 </main>
 <footer class="foot">
-  <p>© 2026 Nick Gushchin <span aria-hidden="true">·</span> <a href="./">Privacy</a> <span aria-hidden="true">·</span> <a href="mailto:hello@ygor.app">Contact</a></p>
+  <p>© 2026 Nick Gushchin <span aria-hidden="true">·</span> <a href="./">Privacy</a> <span aria-hidden="true">·</span> <a href="../stats/">Stats</a> <span aria-hidden="true">·</span> <a href="mailto:hello@ygor.app">Contact</a></p>
   <p class="made">Made in Zurich</p>
 </footer>
 </body>
