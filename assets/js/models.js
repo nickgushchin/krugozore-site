@@ -468,7 +468,7 @@
     list.appendChild(moreRow);
     moreRow.hidden = shown <= n;
     more.setAttribute("aria-expanded", unfolded ? 'true' : 'false');
-    more.innerHTML = unfolded ? 'Show fewer <span aria-hidden="true">↑</span>' : 'Show all ' + shown + ' models <span aria-hidden="true">↓</span>';
+    more.innerHTML = unfolded ? 'Show fewer <span aria-hidden="true">↑</span>' : '<span aria-hidden="true">…</span> Show all ' + shown + ' models <span aria-hidden="true">↓</span>';
     var said = shown + (shown === 1 ? ' model' : ' models');
     count.textContent = said;
     if (announce) live.textContent = said + ' shown';
