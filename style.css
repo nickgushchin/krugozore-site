@@ -150,6 +150,9 @@ p, li { text-wrap: pretty; }
   text-align: left; text-decoration: none;
   transition: transform .15s ease, box-shadow .15s ease;
 }
+.store-badge-official { display: inline-block; line-height: 0; border-radius: 9px; }
+.store-badge-official img { height: 54px; width: auto; }
+.store-badge-official:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
 a.store-badge:hover { transform: translateY(-1px); box-shadow: 0 10px 22px -8px rgba(0,0,0,.55); }
 a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
 .sb-small { font: 600 11px/1.2 var(--sans); letter-spacing: 0.04em; opacity: 0.85; }
