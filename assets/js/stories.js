@@ -21,9 +21,9 @@
   var BENCH = { ring: [0.3, 0.79, 2.4], cam: [0.42, 0.66], lamp: [0.37, 0.86] };
 
   var FILM_FPS = 18;     // the projector runs at silent speed; the progress bars stay smooth
-  var IRIS_IN = 0.5;     // seconds
+  var IRIS_IN = 0.4;     // seconds
   var IRIS_OUT = 0.6;
-  var SCENE = 2.6;       // seconds on the picture before the title card (halved, Nick 27 Oct)
+  var SCENE = 1.7;       // seconds on the picture before the title card (Nick, 27 Oct)
 
   var motion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
   function still() { return !!(motion && motion.matches); }
