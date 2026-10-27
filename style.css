@@ -161,7 +161,9 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .facts li {
   font: 600 13px/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase;
   padding: 9px 13px; border: 1.5px solid var(--fg); border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 7px;
 }
+.facts .fi { width: 17px; height: 17px; flex: none; fill: none; color: var(--orange-text); stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ── Shared section heads ────────────────────────────── */
 .eyebrow {
