@@ -893,6 +893,30 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 }
 .rules h3 { font-size: 23px; line-height: 1.15; font-weight: 800; margin-bottom: 8px; }
 .rules p { margin: 0; font-size: 16px; line-height: 1.55; }
+/* one small Ygor picture per rule: floated beside the heading on phones; on desktop, where the
+   columns are narrow, it sits top right across from the numeral and the heading gets the full width */
+.rule-art { float: right; width: 84px; height: 84px; margin: -6px -2px 8px 14px; overflow: visible; }
+@media (min-width: 900px) {
+  .rules li { padding-left: 4px; }
+  .rules li::before { top: 26px; font-size: 30px; width: auto; }
+  .rule-art { float: none; display: block; width: 112px; height: 112px; margin: -8px 0 14px auto; }
+}
+.privacy .ra-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.ra-disc { fill: var(--cream); }
+.ra-ring { fill: none; stroke: var(--ink); stroke-width: 2.6; }
+.ra-ink { fill: var(--ink); }
+.ra-eye { fill: var(--cream); }
+.ra-smile { fill: none; stroke: var(--cream); stroke-width: 5; stroke-linecap: round; }
+.ra-line { fill: var(--cream); stroke: var(--ink); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.ra-fill { fill: var(--ink); }
+.ra-dot { fill: var(--ink); }
+.ra-acc { fill: var(--orange); }
+.ra-edge { stroke: var(--ink); stroke-width: 2.6; stroke-linejoin: round; }
+.ra-knob { fill: var(--cream); stroke: var(--ink); stroke-width: 2.6; }
+.ra-spark { fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; }
+.ra-halo { fill: none; stroke: var(--cream); stroke-width: 9; stroke-linecap: round; }
+.ra-strike { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
+.ra-dash { fill: none; stroke: var(--ink); stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 0.1 5.5; }
 @media (min-width: 900px) {
   .rules { grid-template-columns: repeat(6, 1fr); column-gap: 40px; }
   .rules li { grid-column: span 2; }
