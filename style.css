@@ -163,6 +163,8 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
   padding: 9px 13px; border: 1.5px solid var(--fg); border-radius: 999px;
   display: inline-flex; align-items: center; gap: 7px;
 }
+.founder { max-width: 30em; margin: 22px auto 0; font-size: 14.5px; line-height: 1.5; color: var(--muted); text-align: center; }
+.founder strong { color: var(--fg); font-weight: 600; }
 .facts .fi { width: 17px; height: 17px; flex: none; fill: none; color: var(--orange-text); stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ── Shared section heads ────────────────────────────── */
