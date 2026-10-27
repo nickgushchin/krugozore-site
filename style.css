@@ -909,16 +909,20 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .ra-acc { fill: var(--orange); }
 .ra-edge { stroke: var(--ink); stroke-width: 3.4; stroke-linejoin: round; }
 .ra-phone { fill: var(--cream); stroke: var(--ink); stroke-width: 3.8; stroke-linejoin: round; }
-.ra-glass { fill: url(#ra-glow); stroke: var(--ink); stroke-width: 1.7; }
-.ra-ai { fill: #fff; fill-rule: evenodd; }
-.ra-wire { stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
 .ra-shackle { fill: none; stroke: var(--ink); stroke-width: 3.2; stroke-linecap: round; }
-.ra-stick { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
-.ra-halo { fill: none; stroke: var(--cream); stroke-width: 12; stroke-linecap: round; }
-.ra-strike { fill: none; stroke: var(--ink); stroke-width: 6; stroke-linecap: round; }
-.ra-spark { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .ra-dash { fill: none; stroke: var(--ink); stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 0.1 5.2; }
-.ra-ghost { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-dasharray: 1.6 2; opacity: .6; }
+.ra-cream { fill: var(--cream); }
+.ra-key { fill: var(--ink); }
+.ra-key-ring { fill: none; stroke: var(--ink); stroke-width: 3; }
+.ra-okey { fill: var(--orange); }
+.ra-okey-ring { fill: none; stroke: var(--orange); stroke-width: 3; }
+.ra-bigshackle { fill: none; stroke: var(--ink); stroke-width: 5.4; }
+.ra-cloud { fill: var(--cream); stroke: var(--ink); stroke-width: 4.2; stroke-linejoin: round; }
+.ra-strike-edge { fill: none; stroke: var(--ink); stroke-width: 9.6; stroke-linecap: round; }
+.ra-strike-acc { fill: none; stroke: var(--orange); stroke-width: 4.4; stroke-linecap: round; }
+.ra-outline { fill: none; stroke: var(--ink); stroke-width: 2.2; }
+.ra-edge2 { stroke: var(--ink); stroke-width: 2.2; stroke-linejoin: round; }
+.ra-handle { fill: none; stroke: var(--ink); stroke-width: 3.6; stroke-linecap: round; }
 @media (min-width: 900px) {
   .rules { grid-template-columns: repeat(6, 1fr); column-gap: 40px; }
   .rules li { grid-column: span 2; }
