@@ -602,9 +602,73 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
   91% { transform: scale(1); opacity: 1; animation-timing-function: ease-in; }
   97%, 100% { transform: scale(.94); opacity: 0; }
 }
+.brain .yg-clock { animation: yg-clock var(--yg-d) linear infinite; }
+.brain.is-paused .yg-clock { animation-play-state: paused; }
+.yg-clock { position: absolute; width: 0; height: 0; overflow: hidden; }
+@keyframes yg-clock { to { opacity: 1; } }
+
+/* the Smart Group turn: the lid stays shut for a second round while the chosen model answers */
+.brain.is-hold .yg-lid, .brain.is-hold .yg-in, .brain.is-hold .yg-out, .brain.is-hold .yg-spark,
+.brain.is-hold .yg-rim, .brain.is-hold .yg-m-flat, .brain.is-hold .yg-m-smile { animation: none; }
+.brain.is-hold .yg-m-open { animation-name: yg-m-open-hold; }
+.brain.is-hold .yg-head { animation-name: yg-nod-hold; }
+.brain.is-group:not(.is-hold) .yg-m-open { animation: none; }
+.brain.is-group .yg-say { animation: none; opacity: 0; transform: scale(.55); transition: opacity .2s ease, transform .4s cubic-bezier(.2, 1.5, .4, 1); }
+.brain.is-group .yg-say.is-up { opacity: 1; transform: none; }
+.brain.is-routed .yg-say { left: 50.5%; width: 48%; }
+.brain.is-routed .yg-who { font-size: 2.95cqw; gap: 1.1cqw; }
+@keyframes yg-m-open-hold {
+  0%, 28% { transform: scaleY(0); }
+  31% { transform: scaleY(1); } 34% { transform: scaleY(.15); }
+  37% { transform: scaleY(.85); } 40% { transform: scaleY(.1); }
+  43% { transform: scaleY(1); } 46.5% { transform: scaleY(.2); }
+  50% { transform: scaleY(.75); } 53.5%, 100% { transform: scaleY(0); }
+}
+@keyframes yg-nod-hold {
+  0%, 28% { transform: none; animation-timing-function: ease-in-out; }
+  33% { transform: rotate(-2.2deg); animation-timing-function: ease-in-out; }
+  38% { transform: rotate(.6deg); animation-timing-function: ease-in-out; }
+  44% { transform: rotate(-1.8deg); animation-timing-function: ease-in-out; }
+  50% { transform: rotate(.4deg); animation-timing-function: ease-in-out; }
+  56%, 100% { transform: none; }
+}
+.yg-gate-mini { width: 4.4cqw; height: 2.3cqw; flex: none; fill: var(--orange); stroke: var(--orange); }
+/* his thought: a tiny route tree, then it folds into the speech bubble */
+.yg-think {
+  position: absolute; left: 33%; top: 3%; width: 65.5%; text-align: left; pointer-events: none;
+  background: #FBF8F1; color: var(--ink); border: 2px solid var(--ink); border-radius: 4.6cqw;
+  padding: 2cqw 2.6cqw 1.4cqw; opacity: 0; transform: scale(.6); transform-origin: 18% 115%;
+  transition: opacity .22s ease, transform .42s cubic-bezier(.2, 1.4, .4, 1);
+}
+.yg-think::before, .yg-think::after {
+  /* thought dots, down to his head */
+  content: ""; position: absolute; border-radius: 50%; background: #FBF8F1; border: 2px solid var(--ink);
+}
+.yg-think::before { left: -6.5%; top: 70%; width: 3.4cqw; height: 3.4cqw; }
+.yg-think::after { left: -11.5%; top: 86%; width: 2.2cqw; height: 2.2cqw; }
+.yg-think.is-up { opacity: 1; transform: none; }
+.yg-think.is-out { opacity: 0; transform: translate(14%, -4%) scale(.5); transition: opacity .26s ease, transform .3s ease-in; }
+.yg-tq { display: block; font: 600 3.5cqw/1.2 var(--serif); margin-bottom: .6cqw; text-wrap: balance; }
+.yg-tree { display: block; width: 100%; height: auto; overflow: visible; }
+.t-w { fill: none; stroke: rgba(20, 18, 16, 0.26); stroke-width: 1.7; stroke-linecap: round; transition: stroke .12s, opacity .25s; }
+.t-w.is-scan { stroke: rgba(226, 102, 31, 0.75); }
+.t-w.is-lit { stroke: var(--orange); stroke-width: 2.6; }
+.is-picked .t-br:not(.is-lit) { opacity: .35; }
+.t-in { fill: var(--ink); }
+.t-hub { fill: var(--orange); }
+.t-gate { fill: var(--cream); }
+.t-disc { fill: #FBF8F1; stroke: var(--ink); stroke-width: 1.3; }
+.t-ring { fill: var(--orange); opacity: 0; transition: opacity .2s; }
+.t-leaf text { font: 700 8.6px/1 var(--sans); fill: var(--ink); }
+.t-leaf { transition: opacity .25s; }
+.is-picked .t-leaf:not(.is-lit) { opacity: .38; }
+.t-leaf.is-lit .t-ring { opacity: .35; }
+.t-leaf.is-lit text { fill: #A84A16; }
+.t-sig { fill: var(--lamp); stroke: var(--orange); stroke-width: 1.6; opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
-  .brain .yg *, .brain .yg-say { animation: none !important; }
-  .brain .yg-say { opacity: 1; transform: none; }
+  .brain .yg *, .brain .yg-say, .brain .yg-clock { animation: none !important; }
+  .brain .yg-say, .brain.is-group .yg-say { opacity: 1; transform: none; transition: none; }
+  .yg-think { display: none; }
   .yg-pause { display: none; }
   .yg-stage { transition: none; }
 }

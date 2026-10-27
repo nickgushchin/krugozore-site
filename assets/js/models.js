@@ -178,6 +178,40 @@
       '</svg>' +
     '</svg>';
 
+  // The Smart Group turn: every 3rd turn the token going in is a Smart Group. His thought grows
+  // into a tiny route ttree for one of the example questions (random, never the same route twice
+  // in a row), the signal weighs the branches and lights one, then that model answers.
+  var group = document.getElementById('smart-group');
+  var groupRoutes = group ? [].map.call(group.querySelectorAll('.routes li[data-model]'), function (li) {
+    return {
+      m: byId[li.getAttribute('data-model')], swap: byId[li.getAttribute('data-swap')],
+      ask: txt(li.querySelector('.ask')), name: txt(li.querySelector('.route b')),
+      desc: txt(li.querySelector('.route span')), say: li.getAttribute('data-say') || ''
+    };
+  }).filter(function (r) { return r.m; }) : [];
+  var showGroups = null;                 // set by the Smart Groups tab below
+  var GROUP_LOGO = LOGOS + 'group.svg';
+  var GATE_MINI = '<svg class="yg-gate-mini" viewBox="-16 17 130 66" aria-hidden="true" focusable="false"><path d="M6 18.75C43.8 18.75 78 28.13 96 50C78 71.87 43.8 81.25 6 81.25Q30.3 50 6 18.75Z"/><path d="M-16 34.38H16.11M-16 65.62H16.11M95 50H114" fill="none" stroke-width="9"/></svg>';
+  var TY = [7.5, 22.5, 37.5, 52.5];
+  function treeSvg() {
+    var h = '<svg class="yg-ttree" viewBox="0 0 220 60" aria-hidden="true" focusable="false">' +
+      '<path class="t-w t-root" d="M11 30H45"/>';
+    groupRoutes.forEach(function (r, i) {
+      var y = TY[i];
+      h += '<path class="t-w t-br" d="M65 30C88 30 94 ' + y + ' 117 ' + y + 'H121.5"/>';
+    });
+    h += '<circle class="t-in" cx="7" cy="30" r="4.5"/>' +
+      '<circle class="t-hub" cx="55" cy="30" r="10"/>' +
+      '<g transform="translate(47.5 25) scale(.12)" class="t-gate"><path d="M6 18.75C43.8 18.75 78 28.13 96 50C78 71.87 43.8 81.25 6 81.25Q30.3 50 6 18.75Z" transform="translate(16 -17)"/></g>';
+    groupRoutes.forEach(function (r, i) {
+      var y = TY[i];
+      h += '<g class="t-leaf"><circle class="t-ring" cx="128" cy="' + y + '" r="10"/><circle class="t-disc" cx="128" cy="' + y + '" r="6.6"/>' +
+        '<image href="' + r.m.logo + '" x="123.5" y="' + (y - 4.5) + '" width="9" height="9"/>' +
+        '<text x="139" y="' + (y + 3.2) + '">' + esc(r.name) + '</text></g>';
+    });
+    return h + '<circle class="t-sig" r="3.4"/></svg>';
+  }
+
   var ICON_PAUSE = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="i-play" d="M8 5v14l11-7z"/></svg>';
 
   var brain = document.createElement('div');
@@ -186,9 +220,11 @@
     '<div class="yg-box"><button type="button" class="yg-stage" aria-label="Ygor holds one model at a time. Open the full card of the model in his head">' + SVG +
       '<span class="yg-say" aria-hidden="true"><b class="yg-who"></b><span class="yg-line"></span>' +
       '<svg class="yg-tail" viewBox="0 0 24 40" aria-hidden="true" focusable="false"><path d="M7 0 3 37 19 0"/></svg></span>' +
+      (groupRoutes.length ? '<span class="yg-think" aria-hidden="true"><span class="yg-tq"></span>' + treeSvg() + '</span>' : '') +
     '</button>' +
     '<button type="button" class="yg-pause" aria-label="Pause the animation" aria-pressed="false">' + ICON_PAUSE + '</button></div>' +
-    '<p class="yg-hint">Every brain runs on your iPhone. Tap Ygor to meet the one inside.</p>';
+    '<p class="yg-hint">Every brain runs on your iPhone. Tap Ygor to meet the one inside.</p>' +
+    '<i class="yg-clock" aria-hidden="true"></i>';
   var lede = head.querySelector('.lede');
   head.insertBefore(brain, lede ? lede.nextSibling : null);
   section.classList.add('has-brain');
@@ -200,21 +236,54 @@
   var inImg = brain.querySelector('.yg-in-img');
   var outImg = brain.querySelector('.yg-out-img');
   var pauseBtn = brain.querySelector('.yg-pause');
-  var cur = 0, userPaused = false, offscreen = true, cardOpen = false;
+  var clockEl = brain.querySelector('.yg-clock');
+  var think = brain.querySelector('.yg-think');
+  var userPaused = false, offscreen = true, cardOpen = false;
 
-  function href(img, m) { img.setAttribute('href', m.logo); }
-  function put(k) {
-    cur = (k + cycle.length) % cycle.length;
-    var m = cycle[cur], prev = cycle[(cur - 1 + cycle.length) % cycle.length];
-    href(inImg, m);
-    href(outImg, prev);
-    who.innerHTML = logo(m, 'yg-logo') + esc(m.name) + ':';
-    lineEl.textContent = m.line;
+  // the turns: models in their cycle order, a Smart Group every 3rd turn
+  var mi = 0, turns = 0, lastRoute = -1, phase = 0;      // phase: 0 model turn, 1 group going in, 2 group answering
+  var turn = { m: cycle[0] }, prevTurn = { m: cycle[cycle.length - 1] };
+  function logoOf(t) { return t.r ? GROUP_LOGO : t.m.logo; }
+  function nextTurn() {
+    turns++;
+    if (groupRoutes.length > 1 && turns % 3 === 2) {
+      var k;
+      do { k = Math.floor(Math.random() * groupRoutes.length); } while (k === lastRoute);
+      lastRoute = k;
+      return { r: groupRoutes[k], k: k };
+    }
+    mi = (mi + 1) % cycle.length;
+    return { m: cycle[mi] };
   }
+  function paint() {
+    inImg.setAttribute('href', logoOf(turn));
+    outImg.setAttribute('href', logoOf(prevTurn));
+    var m = turn.r ? turn.r.m : turn.m;
+    who.innerHTML = (turn.r ? GATE_MINI : '') + logo(m, 'yg-logo') + esc(m.name) + ':';
+    lineEl.textContent = turn.r ? turn.r.say : m.line;
+    brain.classList.toggle('is-routed', !!turn.r);
+    if (turn.r && think) {
+      think.querySelector('.yg-tq').textContent = turn.r.ask;
+      think.classList.remove('is-up', 'is-out');
+      say.classList.remove('is-up');
+      ttree.classList.remove('is-picked');
+      [].forEach.call(ttree.querySelectorAll('.is-lit, .is-scan'), function (el) { el.classList.remove('is-lit', 'is-scan'); });
+      sig.style.opacity = '0';
+      scan = [0, 1, 2, 3].sort(function () { return Math.random() - 0.5; }).filter(function (i) { return i < groupRoutes.length; });
+      scan.push(turn.k);
+    }
+  }
+  var ttree = think && think.querySelector('.yg-ttree');
+  var sig = ttree && ttree.querySelector('.t-sig');
+  var brs = ttree ? [].slice.call(ttree.querySelectorAll('.t-br')) : [];
+  var lfs = ttree ? [].slice.call(ttree.querySelectorAll('.t-leaf')) : [];
+  var rootW = ttree && ttree.querySelector('.t-root');
+  var scan = [], gStart = 0, gRaf = 0;
+  if (groupRoutes.length) { var g0 = new Image(); g0.src = GROUP_LOGO; }
   // every logo once, so no swap waits for a file
   var seen = {};
   cycle.forEach(function (m) { if (!seen[m.logo]) { seen[m.logo] = 1; var im = new Image(); im.src = m.logo; } });
-  put(0);
+  paint();
 
   function sync() {
     var stop = userPaused || offscreen || cardOpen || document.hidden;
@@ -222,27 +291,79 @@
     pauseBtn.setAttribute('aria-pressed', userPaused ? 'true' : 'false');
     pauseBtn.setAttribute('aria-label', userPaused ? 'Play the animation' : 'Pause the animation');
   }
-  // the bubble's loop is the clock: each new round, the next model
-  say.addEventListener('animationiteration', function () { put(cur + 1); });
+  function clockMs() {
+    var a = clockEl.getAnimations ? clockEl.getAnimations()[0] : null;
+    return a && a.currentTime != null ? a.currentTime : null;
+  }
+  // a hidden element's loop is the clock: each new round, the next turn
+  clockEl.addEventListener('animationiteration', function () {
+    if (still()) return;
+    if (phase === 1) { phase = 2; brain.classList.add('is-hold'); return; }
+    brain.classList.remove('is-group', 'is-hold');
+    phase = 0;
+    prevTurn = turn;
+    turn = nextTurn();
+    paint();
+    if (turn.r && think) {
+      phase = 1;
+      brain.classList.add('is-group');
+      var c = clockMs();
+      gStart = c == null ? 0 : Math.round(c / (D * 1000)) * D * 1000;
+      cancelAnimationFrame(gRaf);
+      gRaf = requestAnimationFrame(groupFrame);
+    }
+  });
+
+  // the group turn, in seconds from the moment its lid opens (two rounds of the clock)
+  function at(path, k) { var L = path.getTotalLength(), p = path.getPointAtLength(L * Math.max(0, Math.min(1, k))); sig.setAttribute('cx', p.x); sig.setAttribute('cy', p.y); }
+  function groupFrame() {
+    if (phase === 0) return;
+    gRaf = requestAnimationFrame(groupFrame);
+    var c = clockMs();
+    if (c == null) return;
+    var t = (c - gStart) / 1000;
+    think.classList.toggle('is-up', t >= 1.45 && t < 4.35);
+    think.classList.toggle('is-out', t >= 4.35);
+    say.classList.toggle('is-up', t >= 4.45 && t < 6.85);
+    var step = Math.floor((t - 2.05) / 0.24);
+    var chosen = brs[turn.k];
+    if (t >= 1.65 && t < 2.05) { sig.style.opacity = '1'; at(rootW, (t - 1.65) / 0.4); }
+    else if (t >= 3.25 && t < 3.65) { sig.style.opacity = '1'; at(chosen, (t - 3.25) / 0.4); }
+    else sig.style.opacity = '0';
+    brs.forEach(function (b, i) {
+      b.classList.toggle('is-scan', t >= 2.05 && t < 3.25 && scan[step] === i);
+      b.classList.toggle('is-lit', t >= 3.25 && i === turn.k);
+    });
+    rootW.classList.toggle('is-lit', t >= 1.65);
+    lfs.forEach(function (l, i) { l.classList.toggle('is-lit', t >= 3.65 && i === turn.k); });
+    ttree.classList.toggle('is-picked', t >= 3.65);
+  }
+
   pauseBtn.addEventListener('click', function () { userPaused = !userPaused; sync(); });
   document.addEventListener('visibilitychange', sync);
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (es) { offscreen = !es[0].isIntersecting; sync(); }, { threshold: 0.15 }).observe(stage);
   } else { offscreen = false; sync(); }
 
-  // The model he holds right now: until the new one is inside, still the last one.
+  // What he holds right now: until the new token is inside, still the last one.
   function holding() {
-    var a = say.getAnimations ? say.getAnimations()[0] : null;
-    if (still() || !a || a.currentTime == null) return cycle[cur];
-    var phase = (a.currentTime / 1000 % D) / D;
-    return phase < LAND ? cycle[(cur - 1 + cycle.length) % cycle.length] : cycle[cur];
+    var c = clockMs();
+    if (still() || c == null || phase === 2) return turn;
+    return (c / 1000 % D) / D < LAND ? prevTurn : turn;
   }
+  function advanceStill() { prevTurn = turn; turn = nextTurn(); paint(); }
   stage.addEventListener('click', function () {
-    var m = holding();
+    var t = holding();
+    if (t.r) {
+      // a Smart Group: the clearest answer is the group itself, in the Smart Groups tab
+      if (showGroups) showGroups();
+      if (still()) advanceStill();
+      return;
+    }
     cardOpen = true; sync();
-    openCard(m, stage, function () {
+    openCard(t.m, stage, function () {
       cardOpen = false;
-      if (still()) put(cur + 1);     // without motion, each tap brings the next model
+      if (still()) advanceStill();     // without motion, each tap brings the next turn
       sync();
     });
   });
@@ -252,7 +373,6 @@
   var SORTS = [['', 'Apple, then size'], ['size', 'Smallest first'], ['quality', 'Best quality'], ['speed', 'Fastest'], ['name', 'Name']];
   var picked = {}, sortBy = '';
 
-  var group = document.getElementById('smart-group');
   var mx = document.createElement('div');
   mx.className = 'mx';
   var chips = '<button type="button" class="mx-chip" data-tag="" aria-pressed="true">All <span>' + models.length + '</span></button>';
@@ -357,13 +477,7 @@
     // The route tree: one input, a junction that picks on the iPhone, a branch per route with
     // its example question above the wire, and the model at the end of each branch. Built from
     // the same list the no-JS page shows; the wires are drawn from the laid-out boxes.
-    var routes = [].map.call(group.querySelectorAll('.routes li[data-model]'), function (li) {
-      return {
-        m: byId[li.getAttribute('data-model')], swap: byId[li.getAttribute('data-swap')],
-        ask: txt(li.querySelector('.ask')), name: txt(li.querySelector('.route b')),
-        desc: txt(li.querySelector('.route span'))
-      };
-    }).filter(function (r) { return r.m; });
+    var routes = groupRoutes;
     var tree = document.createElement('div');
     tree.className = 'tree';
     var ICON_CHAT = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 5.5h16v10H9.5L5.5 19v-3.5H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
@@ -495,6 +609,11 @@
       if (k === 1) startTree(); else cancelAnimationFrame(tRaf);
       if (focus) tabs[k].focus();
     }
+    showGroups = function () {
+      pick(1);
+      tabs[1].focus({ preventScroll: true });
+      group.scrollIntoView({ behavior: still() ? 'auto' : 'smooth', block: 'start' });
+    };
     tabs.forEach(function (t, j) {
       t.addEventListener('click', function () { pick(j); });
       t.addEventListener('keydown', function (e) {
