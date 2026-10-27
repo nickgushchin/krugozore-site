@@ -147,8 +147,11 @@ p, li { text-wrap: pretty; }
   background: var(--ink); color: var(--cream);
   border: 1px solid rgba(244, 239, 228, 0.28);
   box-shadow: 0 6px 18px -8px rgba(0,0,0,.5);
-  text-align: left;
+  text-align: left; text-decoration: none;
+  transition: transform .15s ease, box-shadow .15s ease;
 }
+a.store-badge:hover { transform: translateY(-1px); box-shadow: 0 10px 22px -8px rgba(0,0,0,.55); }
+a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
 .sb-small { font: 600 11px/1.2 var(--sans); letter-spacing: 0.04em; opacity: 0.85; }
 .sb-big { font: 700 22px/1.1 var(--sans); letter-spacing: -0.01em; }
 .text-link { color: var(--fg); font-weight: 600; text-decoration: underline; text-decoration-color: var(--orange); text-decoration-thickness: 2px; }
