@@ -181,7 +181,7 @@
       '<svg class="yg-tail" viewBox="0 0 24 40" aria-hidden="true" focusable="false"><path d="M7 0 3 37 19 0"/></svg></span>' +
     '</button>' +
     '<button type="button" class="yg-pause" aria-label="Pause the animation" aria-pressed="false">' + ICON_PAUSE + '</button></div>' +
-    '<p class="yg-hint">Tap Ygor for the full card</p>';
+    '<p class="yg-hint">Every brain runs on your iPhone. Tap Ygor to meet the one inside.</p>';
   var lede = head.querySelector('.lede');
   head.insertBefore(brain, lede ? lede.nextSibling : null);
   section.classList.add('has-brain');
