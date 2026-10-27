@@ -721,12 +721,13 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .mx-list li[hidden] { display: none; }
 .mx-list:not(.is-open) li.mx-fold { display: none; }
 .mx-more {
-  display: block; margin: 12px auto 0; padding: 11px 20px; border: 1.5px solid var(--fg); border-radius: 999px;
-  background: transparent; color: var(--fg); font: 600 15px/1 var(--sans); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 15px 16px;
+  border: 0; background: color-mix(in srgb, var(--orange) 6%, transparent); color: var(--orange-text);
+  font: 700 15px/1 var(--sans); cursor: pointer;
 }
-.mx-more[hidden] { display: none; }
-.mx-more:hover { background: color-mix(in srgb, var(--orange) 9%, transparent); }
-.mx-more:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+.mx-more:hover { background: color-mix(in srgb, var(--orange) 12%, transparent); }
+.mx-more:focus-visible { outline-offset: -3px; }
+.mx-list li.mx-more-row[hidden] { display: none; }
 .mx-row {
   display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: start; width: 100%; padding: 11px 12px 10px;
   border: 0; background: none; color: var(--fg); text-align: left; font: inherit; cursor: pointer;
@@ -766,6 +767,7 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
   .mx-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; background: none; border: 0; border-radius: 0; overflow: visible; }
   .mx-list li + li { border-top: 0; }
   .mx-list li { background: var(--bg-raised); border: 1.5px solid var(--card-border); border-radius: 14px; overflow: hidden; }
+  .mx-list li.mx-more-row { grid-column: 1 / -1; }
   .mx-row { padding: 13px 14px 12px; height: 100%; }
 }
 .mx-d.d1 i:nth-child(-n+1), .mx-d.d2 i:nth-child(-n+2), .mx-d.d3 i:nth-child(-n+3),

@@ -393,7 +393,6 @@
           '<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></label>' +
       '</div>' +
       '<ul class="mx-list" id="mx-list"></ul>' +
-      '<button type="button" class="mx-more" aria-controls="mx-list" aria-expanded="false"></button>' +
       '<p class="mx-key"><b>Q</b> quality · <b>S</b> speed, in dots from the Ygor Lab test (below). Tap a model for its full card.</p>' +
     '</div>' +
     (group ? '<div class="mx-panel" id="mx-p2" role="tabpanel" aria-labelledby="mx-t2" hidden></div>' : '') +
@@ -404,8 +403,19 @@
   var list = mx.querySelector('.mx-list');
   var live = mx.querySelector('[aria-live]');
   var count = mx.querySelector('.mx-count');
-  var more = mx.querySelector('.mx-more');
-  var FOLD = 4;            // rows shown before "Show all" (Nick, 27 Oct)
+  // the fold toggle is the list's last row, inside its frame, so the folded list reads as "more below"
+  var moreRow = document.createElement('li');
+  moreRow.className = 'mx-more-row';
+  moreRow.innerHTML = '<button type="button" class="mx-more" aria-controls="mx-list" aria-expanded="false"></button>';
+  var more = moreRow.firstChild;
+  // rows shown before "Show all" (Nick, 27 Oct): 4 on a phone; on the wider grid, as many as fill
+  // whole rows, so no card sits alone above the toggle
+  var wide = window.matchMedia ? window.matchMedia('(min-width: 720px)') : null;
+  function fold() {
+    if (!wide || !wide.matches) return 4;
+    var cols = getComputedStyle(list).gridTemplateColumns.split(' ').filter(Boolean).length || 1;
+    return Math.max(4, Math.ceil(4 / cols) * cols);
+  }
   var unfolded = false;
   models.forEach(function (m) {
     var li = document.createElement('li');
@@ -440,12 +450,13 @@
 
   function render(announce) {
     var tags = Object.keys(picked);
+    var n = fold();
     var shown = 0;
     models.slice().sort(order).forEach(function (m) {
       var ok = !tags.length || tags.some(function (t) { return m.caps[t]; });
       m.li.hidden = !ok;
       if (ok) shown++;
-      m.li.classList.toggle('mx-fold', ok && shown > FOLD);
+      m.li.classList.toggle('mx-fold', ok && shown > n);
       list.appendChild(m.li);
     });
     [].forEach.call(mx.querySelectorAll('.mx-chip'), function (c) {
@@ -454,7 +465,8 @@
     });
     if (!still()) { list.classList.remove('is-new'); void list.offsetWidth; list.classList.add('is-new'); }
     list.classList.toggle("is-open", unfolded);
-    more.hidden = shown <= FOLD;
+    list.appendChild(moreRow);
+    moreRow.hidden = shown <= n;
     more.setAttribute("aria-expanded", unfolded ? 'true' : 'false');
     more.innerHTML = unfolded ? 'Show fewer <span aria-hidden="true">↑</span>' : 'Show all ' + shown + ' models <span aria-hidden="true">↓</span>';
     var said = shown + (shown === 1 ? ' model' : ' models');
@@ -478,6 +490,8 @@
     if (!unfolded) list.scrollIntoView({ block: 'nearest', behavior: still() ? 'auto' : 'smooth' });
   });
   render(false);
+  var lastFold = fold();
+  window.addEventListener('resize', function () { var f = fold(); if (f !== lastFold) { lastFold = f; render(false); } });
 
   // ---- 3. Smart Groups -----------------------------------------------------------------
   if (group) {
