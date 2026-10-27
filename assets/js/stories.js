@@ -23,7 +23,8 @@
   var FILM_FPS = 18;     // the projector runs at silent speed; the progress bars stay smooth
   var IRIS_IN = 0.4;     // seconds
   var IRIS_OUT = 0.6;
-  var SCENE = 1.8;       // seconds on the picture before the title card (Nick, 27 Oct)
+  // seconds on the picture before the title card: 1.8 for the first story, 2 for the rest (Nick, 27 Oct)
+  var SCENE_FIRST = 1.8, SCENE = 2.0;
 
   var motion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
   function still() { return !!(motion && motion.matches); }
@@ -44,6 +45,7 @@
       look: i === 0 ? STATION : BENCH,
       // the card stays up long enough to read it
       card: Math.min(5.2, Math.max(3.2, 2.6 + words * 0.03)),
+      scene: i === 0 ? SCENE_FIRST : SCENE,
       seen: false, ring: null
     };
   }).filter(function (it) { return it.img && it.title; });
@@ -244,7 +246,7 @@
     drawFilm(0);
   }
 
-  function duration(it) { return SCENE + it.card; }
+  function duration(it) { return it.scene + it.card; }
 
   // ---- The clock ----------------------------------------------------------------------
   function paused() { return userPaused || held || hidden; }
@@ -312,7 +314,7 @@
     var it = items[cur];
     var d = duration(it);
     var calm = still();
-    var onCard = s >= SCENE;
+    var onCard = s >= it.scene;
     if (onCard !== card.classList.contains('is-on')) card.classList.toggle('is-on', onCard);
     if (!W) return;
 
@@ -325,7 +327,7 @@
     }
 
     // camera: a slow push in (odd stories) or pull back (even), gate weave, a rubber-hose bounce
-    var k = ease(Math.min(s / SCENE, 1));
+    var k = ease(Math.min(s / it.scene, 1));
     var zoom = cur % 2 ? 1.17 - 0.1 * k : 1.05 + 0.12 * k;
     cam.style.transform = 'scale(' + zoom.toFixed(4) + ')';
     var beat = Math.abs(Math.sin(s * Math.PI / 0.76));
