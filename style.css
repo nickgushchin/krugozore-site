@@ -707,21 +707,63 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .group-members { display: flex; align-items: center; margin: -2px 0 14px; font-size: 13px; color: var(--muted); }
 .group-members .mx-logo { width: 28px; height: 28px; margin-right: -6px; box-shadow: 0 0 0 1px rgba(20, 18, 16, 0.18) inset, 0 0 0 2px var(--bg-raised); }
 .group-members span { margin-left: 13px; }
-.group.is-live .routes { grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); }
-.group.is-live .routes li { display: grid; position: relative; }
-.to-btn {
-  display: flex; align-items: center; gap: 10px; width: 100%; padding: 6px 10px 6px 6px; font: inherit; color: var(--fg); text-align: left;
-  background: var(--bg-raised); border: 1.5px solid var(--card-border); border-radius: 999px; cursor: pointer;
+.group.is-live .routes { display: none; }
+.group-edit[hidden] { display: none; }
+
+/* the route tree: one input, the junction, a branch per route, a model at each leaf */
+.tree { position: relative; margin: 4px 0 16px; }
+.tree-wires { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.tw-base path { fill: none; stroke: color-mix(in srgb, var(--fg) 26%, var(--bg-raised)); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.tw-base .tw-ghost { stroke-dasharray: 4 5; transition: opacity .4s ease; }
+.tw-hot { fill: none; stroke: var(--orange); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.tw-dot { fill: var(--lamp); stroke: var(--orange); stroke-width: 2.5; opacity: 0; }
+.tw-halo { fill: var(--orange); opacity: 0; }
+.is-moving .tw-dot { opacity: 1; }
+.is-moving .tw-halo { opacity: .18; }
+.tree-in { position: relative; display: flex; flex-direction: column; gap: 26px; margin: 0 0 22px; }
+.tn { display: flex; align-items: center; gap: 12px; margin: 0; }
+.tn-ic { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%; position: relative; z-index: 1; }
+.tn-root .tn-ic { background: var(--bg-raised); color: var(--fg); box-shadow: 0 0 0 1.5px var(--fg) inset; }
+.tn-hub .tn-ic { background: var(--orange); }
+.tn-hub svg { fill: var(--cream); stroke: var(--cream); }
+.tn-tx { font-size: 13px; line-height: 1.3; color: var(--muted); }
+.tn-tx b { display: block; font: 700 17px/1.2 var(--serif); color: var(--fg); }
+.tree-rows { position: relative; list-style: none; margin: 0; padding: 0 0 0 44px; display: grid; gap: 16px; }
+.br { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "ask ask" "wire leaf" "route route"; column-gap: 10px; }
+.br-ask {
+  grid-area: ask; justify-self: start; margin: 0 0 5px -6px; padding: 2px 6px; border-radius: 8px;
+  font: 500 15.5px/1.35 var(--serif); transition: background-color .3s ease, color .3s ease;
 }
-.to-btn .mx-logo { width: 32px; height: 32px; }
-.to-btn > span:nth-child(2) { flex: 1; font-weight: 500; font-size: 15px; }
-.to-more { font: 700 12px/1 var(--sans); color: var(--orange-text); letter-spacing: 0.04em; }
-.to-btn:hover { background: color-mix(in srgb, var(--orange) 8%, var(--bg-raised)); }
-.group.is-live .route::before {
-  /* the OR gate, the app's Smart Group mark, as the router between message and model */
-  content: ""; display: inline-block; width: 22px; height: 11px; margin-right: 6px; vertical-align: -1px; background: var(--orange);
-  -webkit-mask: url("assets/img/gate.svg") center / contain no-repeat; mask: url("assets/img/gate.svg") center / contain no-repeat;
+.br.is-on .br-ask { background: color-mix(in srgb, var(--orange) 14%, transparent); color: var(--fg); }
+.br-wire { grid-area: wire; align-self: center; height: 2px; }
+.br-leaf {
+  grid-area: leaf; display: inline-flex; align-items: center; gap: 8px; padding: 4px 13px 4px 4px; position: relative; z-index: 1;
+  font: 700 14px/1.1 var(--sans); color: var(--fg); background: var(--bg-raised);
+  border: 1.5px solid var(--card-border); border-radius: 999px; cursor: pointer; transition: box-shadow .3s ease;
 }
+.br-leaf .mx-logo { width: 32px; height: 32px; }
+.br.is-hit .br-leaf { box-shadow: 0 0 0 4px color-mix(in srgb, var(--orange) 30%, transparent); animation: br-hit .45s cubic-bezier(.2, 1.6, .4, 1); }
+@keyframes br-hit { 40% { transform: scale(1.07); } }
+.br-route { grid-area: route; margin: 5px 0 0; font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+.br-route b { font: 700 11px/1 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange-text); margin-right: 3px; padding: 2px 3px; border-radius: 4px; }
+.br-ghost { cursor: default; color: var(--muted); border-style: dashed; border-color: color-mix(in srgb, var(--fg) 35%, transparent); background: none; padding: 9px 14px; font-weight: 600; }
+.br-add { transition: opacity .4s ease; }
+.tree-edit { margin: 18px 0 0; padding: 10px 12px; border: 1.5px dashed color-mix(in srgb, var(--orange) 60%, transparent); border-radius: 12px; font-size: 14.5px; transition: background-color .4s ease; }
+.tree-edit b { color: var(--orange-text); }
+/* "make it yours": the ghost route appears, one label is being edited, one model is swapped */
+.tree.is-live .br-add, .tree.is-live .tw-ghost { opacity: 0; }
+.tree.is-live.is-edit .br-add, .tree.is-live.is-edit .tw-ghost { opacity: 1; }
+.tree.is-edit .tree-edit { background: color-mix(in srgb, var(--orange) 12%, transparent); }
+.tree.is-edit .br:nth-last-child(2) .br-route b { outline: 1.5px dashed var(--orange); outline-offset: 1px; }
+.tree.is-edit .br:nth-last-child(2) .br-route b::after { content: ""; display: inline-block; width: 1.5px; height: 1.05em; margin: 0 0 -2px 2px; background: var(--orange-text); animation: br-caret 1s steps(1) infinite; }
+@keyframes br-caret { 50% { opacity: 0; } }
+.tree.is-wide { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 72px; align-items: center; }
+.tree.is-wide .tree-in { flex-direction: row; align-items: flex-start; gap: 46px; margin: 0; }
+.tree.is-wide .tn { flex-direction: column; text-align: center; width: 126px; gap: 8px; }
+.tree.is-wide .tree-rows { padding-left: 0; }
+.tree.is-wide .tree-edit { grid-column: 1 / -1; }
+@media (min-width: 900px) { .group.is-live { max-width: 1000px; } }
+@media (prefers-reduced-motion: reduce) { .br-leaf, .br-ask, .br-add, .tree-edit { transition: none; } .br.is-hit .br-leaf { animation: none; } }
 
 /* the full card */
 .mc-lock { overflow: hidden; }

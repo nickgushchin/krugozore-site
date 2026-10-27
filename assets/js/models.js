@@ -354,19 +354,132 @@
       gh.insertAdjacentHTML('afterbegin', '<span class="group-mark" aria-hidden="true"><svg viewBox="-16 17 130 66" focusable="false"><path d="M6 18.75C43.8 18.75 78 28.13 96 50C78 71.87 43.8 81.25 6 81.25Q30.3 50 6 18.75Z"/><path d="M-16 34.38H16.11M-16 65.62H16.11M95 50H114" fill="none" stroke-width="6"/></svg></span>');
       gh.insertAdjacentHTML('beforeend', '<p class="group-members" aria-hidden="true">' + members.map(function (m) { return logo(m); }).join('') + '<span>' + members.length + ' models</span></p>');
     }
-    [].forEach.call(group.querySelectorAll('.routes li[data-model]'), function (li) {
-      var m = byId[li.getAttribute('data-model')];
-      var to = li.querySelector('.to');
-      if (!m || !to) return;
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'to-btn';
-      b.setAttribute('aria-haspopup', 'dialog');
-      b.innerHTML = logo(m) + '<span><b>' + esc(m.name) + '</b> answers</span><span class="to-more" aria-hidden="true">Card ›</span>';
-      b.addEventListener('click', function () { openCard(m, b); });
-      to.textContent = '';
-      to.appendChild(b);
+    // The route tree: one input, a junction that picks on the iPhone, a branch per route with
+    // its example question above the wire, and the model at the end of each branch. Built from
+    // the same list the no-JS page shows; the wires are drawn from the laid-out boxes.
+    var routes = [].map.call(group.querySelectorAll('.routes li[data-model]'), function (li) {
+      return {
+        m: byId[li.getAttribute('data-model')], swap: byId[li.getAttribute('data-swap')],
+        ask: txt(li.querySelector('.ask')), name: txt(li.querySelector('.route b')),
+        desc: txt(li.querySelector('.route span'))
+      };
+    }).filter(function (r) { return r.m; });
+    var tree = document.createElement('div');
+    tree.className = 'tree';
+    var ICON_CHAT = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 5.5h16v10H9.5L5.5 19v-3.5H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
+    var GATE = '<svg viewBox="-16 17 130 66" width="30" height="16" aria-hidden="true" focusable="false"><path d="M6 18.75C43.8 18.75 78 28.13 96 50C78 71.87 43.8 81.25 6 81.25Q30.3 50 6 18.75Z"/><path d="M-16 34.38H16.11M-16 65.62H16.11M95 50H114" fill="none" stroke-width="7"/></svg>';
+    tree.innerHTML =
+      '<svg class="tree-wires" aria-hidden="true" focusable="false"><g class="tw-base"></g><path class="tw-hot"/><circle class="tw-halo" r="11"/><circle class="tw-dot" r="5"/></svg>' +
+      '<div class="tree-in">' +
+        '<p class="tn tn-root"><span class="tn-ic">' + ICON_CHAT + '</span><span class="tn-tx"><b>Your message</b>one chat</span></p>' +
+        '<p class="tn tn-hub"><span class="tn-ic">' + GATE + '</span><span class="tn-tx"><b>Smart Group</b>picks a route on your iPhone</span></p>' +
+      '</div>' +
+      '<ol class="tree-rows" aria-label="Routes">' +
+        routes.map(function (r, i) {
+          return '<li class="br">' +
+            '<p class="br-ask">' + esc(r.ask) + '</p><span class="br-wire"></span>' +
+            '<button type="button" class="br-leaf" aria-haspopup="dialog" data-i="' + i + '">' + logo(r.m) + '<span>' + esc(r.m.name) + '</span></button>' +
+            '<p class="br-route"><b>' + esc(r.name) + '</b> ' + esc(r.desc) + '</p></li>';
+        }).join('') +
+        '<li class="br br-add" aria-hidden="true"><span class="br-wire"></span><span class="br-leaf br-ghost">+ Add route</span></li>' +
+      '</ol>';
+    var edit = group.querySelector('.group-edit');
+    if (edit) { var cap = document.createElement('p'); cap.className = 'tree-edit'; cap.innerHTML = edit.innerHTML; tree.appendChild(cap); edit.hidden = true; }
+    group.querySelector('.routes').insertAdjacentElement('afterend', tree);
+    var rows = [].slice.call(tree.querySelectorAll('.br'));
+    var leaves = [].slice.call(tree.querySelectorAll('.br-leaf[data-i]'));
+    leaves.forEach(function (b) {
+      b.addEventListener('click', function () { var r = routes[+b.getAttribute('data-i')]; openCard(b.swapped ? r.swap : r.m, b); });
     });
+
+    var wires = tree.querySelector('.tree-wires'), base = wires.querySelector('.tw-base');
+    var hot = wires.querySelector('.tw-hot'), dot = wires.querySelector('.tw-dot'), halo = wires.querySelector('.tw-halo');
+    var paths = [], lens = [];
+    function box(el, t) {
+      var r = el.getBoundingClientRect();
+      return { l: r.left - t.left, r: r.right - t.left, t: r.top - t.top, b: r.bottom - t.top, x: (r.left + r.right) / 2 - t.left, y: (r.top + r.bottom) / 2 - t.top };
+    }
+    function f(n) { return Math.round(n * 10) / 10; }
+    function layout() {
+      if (!tree.offsetParent) return;
+      tree.classList.toggle('is-wide', tree.clientWidth >= 640);
+      var wide = tree.classList.contains('is-wide');
+      var t = tree.getBoundingClientRect();
+      wires.setAttribute('viewBox', '0 0 ' + f(t.width) + ' ' + f(t.height));
+      var a = box(tree.querySelector('.tn-root .tn-ic'), t), h = box(tree.querySelector('.tn-hub .tn-ic'), t);
+      var list = box(tree.querySelector('.tree-rows'), t);
+      paths = rows.map(function (li) {
+        var w = box(li.querySelector('.br-wire'), t), leaf = box(li.querySelector('.br-leaf'), t);
+        var y = w.y, end = leaf.l;
+        if (wide) {
+          var x0 = h.r, x1 = list.l, k = (x1 - x0) * 0.55;
+          return 'M' + f(a.x) + ' ' + f(a.y) + 'H' + f(h.x) + 'M' + f(x0) + ' ' + f(h.y) + 'C' + f(x0 + k) + ' ' + f(h.y) + ' ' + f(x1 - k) + ' ' + f(y) + ' ' + f(x1) + ' ' + f(y) + 'H' + f(end);
+        }
+        var r = 12;
+        return 'M' + f(a.x) + ' ' + f(a.y) + 'V' + f(h.y) + 'M' + f(h.x) + ' ' + f(h.b) + 'V' + f(y - r) + 'Q' + f(h.x) + ' ' + f(y) + ' ' + f(h.x + r) + ' ' + f(y) + 'H' + f(end);
+      });
+      base.innerHTML = paths.map(function (d, i) { return '<path d="' + d + '"' + (rows[i].classList.contains('br-add') ? ' class="tw-ghost"' : '') + '/>'; }).join('');
+      lens = [].map.call(base.querySelectorAll('path'), function (p) { return p.getTotalLength(); });
+    }
+
+    // the signal: from the message to one leaf, route after route, then the "make it yours" beat
+    var STEP = 2.4, TRAVEL = 1.25, EDIT = 4.2;
+    var clock = 0, prev = 0, tRaf = 0, seenTree = false, beat = -1;
+    function treeOn() { return seenTree && !document.hidden && !still() && !p2.hidden; }
+    function light(i) {
+      rows.forEach(function (li, k) { li.classList.toggle('is-on', k === i); li.classList.remove('is-hit'); });
+      if (i < 0) { hot.removeAttribute('d'); return; }
+      hot.setAttribute('d', paths[i]);
+      hot.style.strokeDasharray = lens[i] + ' ' + lens[i];
+    }
+    function setEdit(on) {
+      tree.classList.toggle('is-edit', on);
+      routes.forEach(function (r, i) {
+        if (!r.swap) return;
+        var b = leaves[i], to = on ? r.swap : r.m;
+        if (b.swapped === on) return;
+        b.swapped = on;
+        var flip = b.animate ? b.animate([{ transform: 'rotateY(0)' }, { transform: 'rotateY(90deg)' }], { duration: 170, easing: 'ease-in' }) : null;
+        function swap() {
+          b.innerHTML = logo(to) + '<span>' + esc(to.name) + '</span>';
+          layout();
+          if (b.animate) b.animate([{ transform: 'rotateY(-90deg)' }, { transform: 'rotateY(0)' }], { duration: 220, easing: 'ease-out' });
+        }
+        if (flip) flip.onfinish = swap; else swap();
+      });
+    }
+    function frame(now) {
+      tRaf = requestAnimationFrame(frame);
+      var dt = Math.min(now - prev, 100) / 1000;
+      prev = now;
+      if (!treeOn()) return;
+      clock += dt;
+      var n = routes.length, total = n * STEP + EDIT, s = clock % total;
+      var i = Math.floor(s / STEP);
+      if (i < n) {
+        if (beat !== i) { beat = i; setEdit(false); light(i); tree.classList.add('is-live'); }
+        var k = Math.min(1, (s - i * STEP) / TRAVEL), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+        var p = base.querySelectorAll('path')[i], L = lens[i] * e, pt = p.getPointAtLength(L);
+        dot.setAttribute('transform', 'translate(' + f(pt.x) + ' ' + f(pt.y) + ')');
+        halo.setAttribute('transform', 'translate(' + f(pt.x) + ' ' + f(pt.y) + ')');
+        hot.style.strokeDashoffset = lens[i] - L;
+        rows[i].classList.toggle('is-hit', k >= 1);
+        tree.classList.toggle('is-moving', k < 1);
+      } else if (beat !== n) {
+        beat = n; light(-1); tree.classList.remove('is-moving'); setEdit(true);
+      }
+    }
+    function startTree() {
+      layout();
+      if (still()) return;
+      cancelAnimationFrame(tRaf); prev = performance.now(); tRaf = requestAnimationFrame(frame);
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(function () { layout(); if (beat >= 0 && beat < routes.length) light(beat); }).observe(tree);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { seenTree = es[0].isIntersecting; }, { threshold: 0.2 }).observe(tree);
+    } else seenTree = true;
+
     p2.appendChild(group);
     group.classList.add('is-live');
 
@@ -379,6 +492,7 @@
         panels[j].hidden = j !== k;
       });
       section.classList.toggle('mx-on-groups', k === 1);
+      if (k === 1) startTree(); else cancelAnimationFrame(tRaf);
       if (focus) tabs[k].focus();
     }
     tabs.forEach(function (t, j) {
