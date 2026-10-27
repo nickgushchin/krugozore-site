@@ -29,10 +29,11 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "name": "Ygor", "alternateName": ["Ygor AI", "Krugozore AI"], "url": "https://ygor.app/", "image": "https://ygor.app/assets/img/ygor-icon-512.png", "operatingSystem": "iOS 26.5 or later, iPadOS", "applicationCategory": "ProductivityApplication", "description": "Private AI assistant for iPhone. Open AI models run on the device, chats are stored on the device, no cloud and no account.", "featureList": ["On-device AI chat", "Works offline after model download", "No account, no Ygor server", "Vision models that read photos on the device", "On-device image generation", "Optional web search with sources"], "author": {"@type": "Person", "name": "Nick Gushchin"}, "publisher": {"@type": "Organization", "name": "Ygor", "url": "https://ygor.app/", "email": "hello@ygor.app", "logo": "https://ygor.app/assets/img/ygor-icon-512.png", "address": {"@type": "PostalAddress", "addressLocality": "Zurich", "addressCountry": "CH"}}, "privacyPolicy": "https://ygor.app/privacy/", "mentions": [{"@type": "SoftwareApplication", "name": "Apple Intelligence (on-device)"}, {"@type": "SoftwareApplication", "name": "Qwen3 4B"}, {"@type": "SoftwareApplication", "name": "Qwen3 1.7B"}, {"@type": "SoftwareApplication", "name": "Qwen3-VL 4B"}, {"@type": "SoftwareApplication", "name": "Qwen3-VL 2B"}, {"@type": "SoftwareApplication", "name": "LFM2.5 2.6B"}, {"@type": "SoftwareApplication", "name": "LFM2.5 1.2B"}, {"@type": "SoftwareApplication", "name": "Gemma 4 E2B"}, {"@type": "SoftwareApplication", "name": "Granite 4.1 3B"}, {"@type": "SoftwareApplication", "name": "Ternary Bonsai 8B"}, {"@type": "SoftwareApplication", "name": "Ternary Bonsai 4B"}, {"@type": "SoftwareApplication", "name": "Bonsai Image 4B"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Ygor?", "acceptedAnswer": {"@type": "Answer", "text": "Ygor is a private AI assistant app for iPhone and iPad. It runs open AI language models directly on the device, so conversations are processed and stored on your iPhone instead of in a cloud."}}, {"@type": "Question", "name": "Does Ygor send my chats to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. Ygor has no server and no account. Chats, files and photos you attach are saved in the app's storage on your iPhone. Only what you explicitly switch on leaves the device, for example a web search you start."}}, {"@type": "Question", "name": "Does Ygor work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Once a model is downloaded, chatting works without an internet connection. You need the internet only to download models and for optional features such as web search."}}, {"@type": "Question", "name": "Which AI models does Ygor run?", "acceptedAnswer": {"@type": "Answer", "text": "Apple's on-device model (Apple Intelligence) plus downloadable open models: Qwen3 4B and 1.7B, Qwen3-VL 4B and 2B (they can see photos), LFM2.5 2.6B and 1.2B by Liquid AI, Gemma 4 E2B by Google, Granite 4.1 3B by IBM, Ternary Bonsai 8B and 4B by Prism ML, and Bonsai Image 4B for making pictures on the device."}}, {"@type": "Question", "name": "Is a local model as good as ChatGPT?", "acceptedAnswer": {"@type": "Answer", "text": "Not for everything. Small on-device models are a little slower and know less than the largest cloud models. In exchange nothing leaves your phone. Ygor shows quality and speed ratings for every model so you can pick the right one."}}, {"@type": "Question", "name": "Who makes Ygor?", "acceptedAnswer": {"@type": "Answer", "text": "Ygor is built in Zurich, Switzerland, by Nick Gushchin. Write to hello@ygor.app."}}]}</script>
 <link rel="preload" href="assets/fonts/Fraunces.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=202610271128">
+<link rel="stylesheet" href="style.css?v=202610271129">
 <script src="assets/js/site.js" defer></script>
 <script src="assets/js/subscribe.js" defer></script>
-<script src="assets/js/stories.js?v=202610271128" defer></script>
+<script src="assets/js/stories.js?v=202610271129" defer></script>
+<script src="assets/js/models.js?v=202610271129" defer></script>
 </head>
 <body class="home">
 <a class="skip" href="#main">Skip to content</a>
@@ -214,11 +215,11 @@
 
   <h3 class="shelf-label"><span>Built in</span></h3>
   <div class="specimens">
-    <article class="spec">
+    <article class="spec" data-model="apple-intelligence" data-brand="apple" data-turn="2" data-line="Built into your iPhone. No download.">
       <p class="maker">Made by Apple <span>Cupertino, California</span></p>
       <h4>Apple Intelligence</h4>
       <p class="fact">Apple's on-device foundation model. It ships with iOS and changes with it.</p>
-      <ul class="tags"><li>Text</li><li>No download</li></ul>
+      <ul class="tags"><li>Text</li><li>No download</li><li>Uses tools</li></ul>
       <dl class="rating">
         <div><dt>Quality</dt><dd><span class="dots d3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Medium <small>est.</small></dd></div>
         <div><dt>Speed</dt><dd><span class="dots d5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Fast <small>est.</small></dd></div>
@@ -229,7 +230,7 @@
 
   <h3 class="shelf-label"><span>Text &amp; reasoning</span></h3>
   <div class="specimens">
-    <article class="spec">
+    <article class="spec" data-model="qwen3-4b" data-brand="qwen" data-turn="1" data-line="I think before I answer.">
       <p class="maker">Made by Alibaba Cloud <span>Qwen Team, Hangzhou</span></p>
       <h4>Qwen3 4B <span>Reasoning</span></h4>
       <p class="fact">Switches between thinking and non-thinking modes in one model.</p>
@@ -241,11 +242,11 @@
       <p class="needs"><b>2.28 GB</b> · 8 GB memory (iPhone 15 Pro or newer) · Apache 2.0</p>
     </article>
 
-    <article class="spec">
+    <article class="spec" data-model="lfm2.5-2.6b" data-brand="liquid" data-turn="6" data-line="I think it through. Long texts, too.">
       <p class="maker">Made by Liquid AI <span>Cambridge, Massachusetts</span></p>
       <h4>LFM2.5 2.6B <span>Reasoning</span></h4>
       <p class="fact">Post-trained with agentic reinforcement learning; 128K-token context window.</p>
-      <ul class="tags"><li>Text</li><li>Thinks first</li></ul>
+      <ul class="tags"><li>Text</li><li>Thinks first</li><li>Uses tools</li></ul>
       <dl class="rating">
         <div><dt>Quality</dt><dd><span class="dots d5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>High</dd></div>
         <div><dt>Speed</dt><dd class="nr">Not rated yet</dd></div>
@@ -253,11 +254,11 @@
       <p class="needs"><b>1.54 GB</b> · 6 GB memory (iPhone 14 / 13 Pro or newer) · LFM Open License v1.0</p>
     </article>
 
-    <article class="spec">
+    <article class="spec" data-model="gemma-4-e2b" data-brand="google" data-turn="7" data-line="Google's small Gemma. Quick with words.">
       <p class="maker">Made by Google DeepMind <span>London</span></p>
       <h4>Gemma 4 E2B</h4>
       <p class="fact">2.3B effective parameters. Text only in Ygor.</p>
-      <ul class="tags"><li>Text</li></ul>
+      <ul class="tags"><li>Text</li><li>Uses tools</li></ul>
       <dl class="rating">
         <div><dt>Quality</dt><dd><span class="dots d4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>High</dd></div>
         <div><dt>Speed</dt><dd><span class="dots d4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Fast</dd></div>
@@ -265,11 +266,11 @@
       <p class="needs"><b>3.58 GB</b> · 12 GB memory (iPhone 17 Pro or iPhone Air) · Apache 2.0</p>
     </article>
 
-    <article class="spec">
+    <article class="spec" data-model="bonsai-8b" data-brand="prism" data-turn="8" data-line="Each of my weights is −1, 0 or +1.">
       <p class="maker">Made by Prism ML <span>built from Qwen3-8B</span></p>
       <h4>Ternary Bonsai 8B</h4>
       <p class="fact">Ternary weights (−1, 0, +1) across the whole network, stored at 2 bits per weight.</p>
-      <ul class="tags"><li>Text</li></ul>
+      <ul class="tags"><li>Text</li><li>Uses tools</li></ul>
       <dl class="rating">
         <div><dt>Quality</dt><dd><span class="dots d4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>High</dd></div>
         <div><dt>Speed</dt><dd><span class="dots d3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Medium</dd></div>
@@ -277,7 +278,7 @@
       <p class="needs"><b>2.32 GB</b> · 8 GB memory (iPhone 15 Pro or newer) · Apache 2.0</p>
     </article>
 
-    <article class="spec">
+    <article class="spec" data-model="qwen3-1.7b" data-brand="qwen" data-turn="9" data-line="119 languages, and quick.">
       <p class="maker">Made by Alibaba Cloud <span>Qwen Team, Hangzhou</span></p>
       <h4>Qwen3 1.7B <span>Reasoning</span></h4>
       <p class="fact">Trained for 119 languages and dialects.</p>
@@ -289,11 +290,11 @@
       <p class="needs"><b>984 MB</b> · 4 GB memory (iPhone 11 or newer, except iPhone SE 2nd generation) · Apache 2.0</p>
     </article>
 
-    <article class="spec">
+    <article class="spec" data-model="granite-4.1-3b" data-brand="ibm" data-turn="4" data-line="Hallo, bonjour: 12 languages.">
       <p class="maker">Made by IBM <span>Granite Team, Armonk, New York</span></p>
       <h4>Granite 4.1 3B</h4>
       <p class="fact">Supports 12 languages, including German and French.</p>
-      <ul class="tags"><li>Text</li></ul>
+      <ul class="tags"><li>Text</li><li>Uses tools</li></ul>
       <dl class="rating">
         <div><dt>Quality</dt><dd><span class="dots d3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Medium</dd></div>
         <div><dt>Speed</dt><dd class="nr">Not rated yet</dd></div>
@@ -301,11 +302,11 @@
       <p class="needs"><b>2.13 GB</b> · 8 GB memory (iPhone 15 Pro or newer) · Apache 2.0</p>
     </article>
 
-    <article class="spec">
+    <article class="spec" data-model="lfm2.5-1.2b" data-brand="liquid" data-turn="10" data-line="Only 663 MB, and still quick.">
       <p class="maker">Made by Liquid AI <span>Cambridge, Massachusetts</span></p>
       <h4>LFM2.5 1.2B <span>Instruct</span></h4>
       <p class="fact">A hybrid of convolution and attention blocks, trained on 28 trillion tokens.</p>
-      <ul class="tags"><li>Text</li></ul>
+      <ul class="tags"><li>Text</li><li>Uses tools</li></ul>
       <dl class="rating">
         <div><dt>Quality</dt><dd><span class="dots d3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Medium</dd></div>
         <div><dt>Speed</dt><dd><span class="dots d5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Fast</dd></div>
@@ -313,7 +314,7 @@
       <p class="needs"><b>663 MB</b> · 4 GB memory (iPhone 11 or newer, except iPhone SE 2nd generation) · LFM Open License v1.0</p>
     </article>
 
-    <article class="spec">
+    <article class="spec" data-model="bonsai-4b" data-brand="prism" data-turn="11" data-line="Qwen3-4B, squeezed to about 1 GB.">
       <p class="maker">Made by Prism ML <span>built from Qwen3-4B</span></p>
       <h4>Ternary Bonsai 4B</h4>
       <p class="fact">Ternary weights, compressed from Qwen3-4B to about 1 GB.</p>
@@ -328,7 +329,7 @@
 
   <h3 class="shelf-label"><span>Vision</span></h3>
   <div class="specimens">
-    <article class="spec">
+    <article class="spec" data-model="qwen3-vl-4b" data-brand="qwen" data-turn="3" data-line="Show me a photo. I'll say what's in it.">
       <p class="maker">Made by Alibaba Cloud <span>Qwen Team, Hangzhou</span></p>
       <h4>Qwen3-VL 4B <span>Vision</span></h4>
       <p class="fact">Looks at the photos you attach. Reads text in 32 languages.</p>
@@ -340,7 +341,7 @@
       <p class="needs"><b>3.11 GB</b> · 8 GB memory (iPhone 15 Pro or newer) · Apache 2.0</p>
     </article>
 
-    <article class="spec">
+    <article class="spec" data-model="qwen3-vl-2b" data-brand="qwen" data-turn="12" data-line="The smaller eye, for more iPhones.">
       <p class="maker">Made by Alibaba Cloud <span>Qwen Team, Hangzhou</span></p>
       <h4>Qwen3-VL 2B <span>Vision</span></h4>
       <p class="fact">The smaller eye: looks at attached photos on more iPhones.</p>
@@ -355,7 +356,7 @@
 
   <h3 class="shelf-label"><span>Pictures</span></h3>
   <div class="specimens">
-    <article class="spec spec-image">
+    <article class="spec spec-image" data-model="bonsai-image-4b" data-brand="prism" data-turn="5" data-line="Describe a picture. I'll paint it.">
       <p class="maker">Made by Prism ML <span>from Black Forest Labs' FLUX.2 klein 4B</span></p>
       <h4>Bonsai Image 4B</h4>
       <p class="fact">Paints pictures from a text prompt, right on the phone, in four steps.</p>
@@ -365,6 +366,42 @@
       </dl>
       <p class="needs"><b>3.87 GB</b> · 8 GB memory (iPhone 15 Pro or newer) · Apache 2.0</p>
     </article>
+  </div>
+
+  <h3 class="shelf-label"><span>Smart Groups</span></h3>
+  <div class="group" id="smart-group">
+    <div class="group-head">
+      <p class="maker">A Smart Group <span>An example you could set up</span></p>
+      <h4>Everyday helper</h4>
+      <p class="fact">Four models in one chat. Each message goes to the model whose route fits it best, and you never switch by hand.</p>
+    </div>
+    <ol class="routes">
+      <li data-model="apple-intelligence">
+        <p class="ask">“Make this email sound friendlier.”</p>
+        <p class="route"><b>Everyday</b> <span>The default route: questions, writing, anything else</span></p>
+        <p class="to">Apple Intelligence</p>
+      </li>
+      <li data-model="qwen3-4b">
+        <p class="ask">“Compare these two phone contracts step by step.”</p>
+        <p class="route"><b>Think it through</b> <span>Maths, logic, plans, compare step by step</span></p>
+        <p class="to">Qwen3 4B</p>
+      </li>
+      <li data-model="qwen3-vl-4b">
+        <p class="ask">“What does the sign in this photo say?”</p>
+        <p class="route"><b>Photos</b> <span>Photo, picture, screenshot, text in an image</span></p>
+        <p class="to">Qwen3-VL 4B</p>
+      </li>
+      <li data-model="granite-4.1-3b">
+        <p class="ask">“Will it rain in Zurich tomorrow?”</p>
+        <p class="route"><b>Weather &amp; web</b> <span>Weather, rain, forecast, look something up</span></p>
+        <p class="to">Granite 4.1 3B</p>
+      </li>
+    </ol>
+    <ul class="group-notes">
+      <li>Ygor matches the words of each new message to the route descriptions, right on your iPhone. No extra model, nothing sent.</li>
+      <li>No clear match? The default route answers. Name a model (“use Granite”) and that one answers.</li>
+      <li>Ygor comes with his own Smart Group, and you can change its routes and models.</li>
+    </ul>
   </div>
 
   <div class="footnote">
