@@ -967,6 +967,8 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .foot p { margin: 0 0 4px; }
 .foot a { color: var(--cream); }
 .foot .made { font: italic 500 15px/1.4 var(--serif); color: var(--sepia-ornament); }
+.foot .made .ch { width: 0.95em; height: 0.95em; vertical-align: -0.12em; margin: 0 0.1em; }
+.foot .made .city { font-size: 0.9em; opacity: 0.85; }
 @media (prefers-color-scheme: dark) {
   .story, .contact, .foot { background-color: #0B0A09; }
 }
