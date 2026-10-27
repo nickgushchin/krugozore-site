@@ -23,8 +23,8 @@
   var FILM_FPS = 18;     // the projector runs at silent speed; the progress bars stay smooth
   var IRIS_IN = 0.4;     // seconds
   var IRIS_OUT = 0.6;
-  // seconds on the picture before the title card: 1.8 for the first story, 2 for the rest (Nick, 27 Oct)
-  var SCENE_FIRST = 1.8, SCENE = 2.0;
+  // seconds on the picture before the title card: 1.8 for the first story, 2.2 for the rest (Nick, 27 Oct)
+  var SCENE_FIRST = 1.8, SCENE = 2.2;
 
   var motion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
   function still() { return !!(motion && motion.matches); }
