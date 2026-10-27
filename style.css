@@ -719,6 +719,14 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 }
 .mx-list li + li { border-top: 1px solid var(--rule); }
 .mx-list li[hidden] { display: none; }
+.mx-list:not(.is-open) li.mx-fold { display: none; }
+.mx-more {
+  display: block; margin: 12px auto 0; padding: 11px 20px; border: 1.5px solid var(--fg); border-radius: 999px;
+  background: transparent; color: var(--fg); font: 600 15px/1 var(--sans); cursor: pointer;
+}
+.mx-more[hidden] { display: none; }
+.mx-more:hover { background: color-mix(in srgb, var(--orange) 9%, transparent); }
+.mx-more:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
 .mx-row {
   display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: start; width: 100%; padding: 11px 12px 10px;
   border: 0; background: none; color: var(--fg); text-align: left; font: inherit; cursor: pointer;

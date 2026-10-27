@@ -392,7 +392,8 @@
         '<label class="mx-sort"><span class="mx-sort-k">Sort</span><select>' + opts + '</select>' +
           '<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></label>' +
       '</div>' +
-      '<ul class="mx-list"></ul>' +
+      '<ul class="mx-list" id="mx-list"></ul>' +
+      '<button type="button" class="mx-more" aria-controls="mx-list" aria-expanded="false"></button>' +
       '<p class="mx-key"><b>Q</b> quality · <b>S</b> speed, in dots from the Ygor Lab test (below). Tap a model for its full card.</p>' +
     '</div>' +
     (group ? '<div class="mx-panel" id="mx-p2" role="tabpanel" aria-labelledby="mx-t2" hidden></div>' : '') +
@@ -403,6 +404,9 @@
   var list = mx.querySelector('.mx-list');
   var live = mx.querySelector('[aria-live]');
   var count = mx.querySelector('.mx-count');
+  var more = mx.querySelector('.mx-more');
+  var FOLD = 4;            // rows shown before "Show all" (Nick, 27 Oct)
+  var unfolded = false;
   models.forEach(function (m) {
     var li = document.createElement('li');
     var caps = ROW_CAPS.map(function (k) { return '<span class="mx-cap' + (m.caps[k] ? ' on' : '') + '">' + icon(k) + '</span>'; }).join('');
@@ -441,6 +445,7 @@
       var ok = !tags.length || tags.some(function (t) { return m.caps[t]; });
       m.li.hidden = !ok;
       if (ok) shown++;
+      m.li.classList.toggle('mx-fold', ok && shown > FOLD);
       list.appendChild(m.li);
     });
     [].forEach.call(mx.querySelectorAll('.mx-chip'), function (c) {
@@ -448,6 +453,10 @@
       c.setAttribute('aria-pressed', (t ? !!picked[t] : !tags.length) ? 'true' : 'false');
     });
     if (!still()) { list.classList.remove('is-new'); void list.offsetWidth; list.classList.add('is-new'); }
+    list.classList.toggle("is-open", unfolded);
+    more.hidden = shown <= FOLD;
+    more.setAttribute("aria-expanded", unfolded ? 'true' : 'false');
+    more.innerHTML = unfolded ? 'Show fewer <span aria-hidden="true">↑</span>' : 'Show all ' + shown + ' models <span aria-hidden="true">↓</span>';
     var said = shown + (shown === 1 ? ' model' : ' models');
     count.textContent = said;
     if (announce) live.textContent = said + ' shown';
@@ -463,6 +472,11 @@
     render(true);
   });
   mx.querySelector('select').addEventListener('change', function () { sortBy = this.value; render(true); });
+  more.addEventListener('click', function () {
+    unfolded = !unfolded;
+    render(false);
+    if (!unfolded) list.scrollIntoView({ block: 'nearest', behavior: still() ? 'auto' : 'smooth' });
+  });
   render(false);
 
   // ---- 3. Smart Groups -----------------------------------------------------------------
