@@ -913,6 +913,15 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .ra-strike { fill: none; stroke: var(--ink); stroke-width: 4.2; stroke-linecap: round; }
 .ra-handle { fill: none; stroke: var(--ink); stroke-width: 3.4; stroke-linecap: round; }
 .ra-cut { stroke: var(--orange); stroke-width: 1.6; paint-order: stroke; }
+/* Rule V's furnace: the stovepipe and its smoke rise above the v4 frame, so its viewBox is 101.4 units tall
+   instead of 74.4; the height scales by the same ratio so Ygor stays the same size as in the other rules. */
+.rule-art.ra-tall { height: calc(74px * 101.4 / 74.4); }
+@media (min-width: 900px) {
+  .rule-art.ra-tall { height: calc(86px * 101.4 / 74.4); }
+}
+.ra-glow { fill: var(--orange); }
+.ra-leg { fill: none; stroke: var(--ink); stroke-width: 1.1; }
+.ra-speed { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-linecap: round; }
 @media (min-width: 900px) {
   .rules { grid-template-columns: repeat(6, 1fr); column-gap: 40px; }
   .rules li { grid-column: span 2; }
