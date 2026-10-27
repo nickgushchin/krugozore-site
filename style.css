@@ -291,8 +291,6 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .ring:active .ring-pic { transform: scale(0.95); }
 .ring:focus-visible { outline: none; }
 .ring:focus-visible .ring-pic { outline: 3px solid var(--cream); outline-offset: 3px; }
-.ring.is-seen .ring-pic::before { background: rgba(244, 239, 228, 0.32); animation: none; -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px)); mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px)); }
-.ring.is-seen .ring-label { color: rgba(244, 239, 228, 0.66); }
 @media (min-width: 700px) {
   .rings-scroll { margin: -16px 0 16px; }
   .rings { gap: 28px 24px; }
