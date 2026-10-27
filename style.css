@@ -259,11 +259,22 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
   -webkit-tap-highlight-color: transparent;
 }
 .ring-pic {
-  /* the unseen ring: lamp light into Ygor Orange, a gap of cinema dark, then the picture */
-  display: block; width: 72px; height: 72px; border-radius: 50%; padding: 3px;
-  background: conic-gradient(from 210deg, var(--lamp), var(--orange) 40%, #B4501A 62%, var(--orange) 82%, var(--lamp));
+  position: relative; display: block; width: 72px; height: 72px; border-radius: 50%; padding: 3px;
   transition: transform .15s ease;
 }
+/* the unseen ring: lamp light into Ygor Orange, cut into dashes that slowly turn, like Instagram's */
+.ring-pic::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background: conic-gradient(from 210deg, var(--lamp), var(--orange) 40%, #B4501A 62%, var(--orange) 82%, var(--lamp));
+  -webkit-mask: repeating-conic-gradient(#000 0 10deg, transparent 10deg 15deg), radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px));
+  -webkit-mask-composite: source-in;
+  mask: repeating-conic-gradient(#000 0 10deg, transparent 10deg 15deg), radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px));
+  mask-composite: intersect;
+  animation: ring-turn 14s linear infinite;
+}
+.ring:hover .ring-pic::before { animation-duration: 4s; }
+@keyframes ring-turn { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .ring-pic::before { animation: none; } }
 .ring-pic .crop { border: 2.5px solid var(--ink); }
 .crop { position: relative; display: block; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; background: #1c1a17; }
 .crop img {
@@ -280,7 +291,7 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .ring:active .ring-pic { transform: scale(0.95); }
 .ring:focus-visible { outline: none; }
 .ring:focus-visible .ring-pic { outline: 3px solid var(--cream); outline-offset: 3px; }
-.ring.is-seen .ring-pic { background: rgba(244, 239, 228, 0.32); }
+.ring.is-seen .ring-pic::before { background: rgba(244, 239, 228, 0.32); animation: none; -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px)); mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px)); }
 .ring.is-seen .ring-label { color: rgba(244, 239, 228, 0.66); }
 @media (min-width: 700px) {
   .rings-scroll { margin: -16px 0 16px; }
