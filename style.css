@@ -245,13 +245,14 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 
 /* ── Stories: circles and the silent-film viewer ─────── */
 /* Built by assets/js/stories.js from the reel cards above; without JS none of this shows. */
-.rings-scroll {
-  margin: -8px -20px 56px; padding: 6px 0 4px; overflow-x: auto; overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+.rings-scroll { margin: -8px 0 8px; padding: 6px 0 4px; }
+/* all eight on one screen: 4 × 2, centred */
+.rings {
+  list-style: none; margin: 0 auto; padding: 0; display: grid; grid-template-columns: repeat(4, auto);
+  justify-content: center; gap: 18px 6px;
 }
-.rings-scroll::-webkit-scrollbar { display: none; }
-.rings { list-style: none; margin: 0 auto; padding: 0 16px; display: flex; gap: 6px; width: max-content; }
-.rings li { scroll-snap-align: start; scroll-margin-left: 16px; }
+/* with the circles in place, the long cards below are left for no-JS readers and search engines */
+.has-rings .reels { display: none; }
 .ring {
   display: flex; flex-direction: column; align-items: center; gap: 8px; width: 84px; padding: 4px 0;
   background: none; border: 0; color: var(--cream); cursor: pointer; font: inherit;
@@ -282,10 +283,11 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .ring.is-seen .ring-pic { background: rgba(244, 239, 228, 0.32); }
 .ring.is-seen .ring-label { color: rgba(244, 239, 228, 0.66); }
 @media (min-width: 700px) {
-  .rings-scroll { margin: -16px 0 72px; }
-  .rings { gap: 14px; }
-  .ring { width: 92px; }
-  .ring-pic { width: 80px; height: 80px; }
+  .rings-scroll { margin: -16px 0 16px; }
+  .rings { gap: 28px 24px; }
+  .ring { width: 112px; }
+  .ring-pic { width: 100px; height: 100px; }
+  .ring .ring-label { font-size: 14px; max-width: 108px; }
 }
 
 .sv-lock { overflow: hidden; }

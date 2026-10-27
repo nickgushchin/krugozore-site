@@ -76,6 +76,7 @@
   });
   scroller.appendChild(row);
   head.parentNode.insertBefore(scroller, head.nextSibling);
+  head.parentNode.classList.add('has-rings');
 
   function cropImage(it) {
     // Same file choice as the reel card below, so the browser fetches each picture once.
