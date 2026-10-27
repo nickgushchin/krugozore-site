@@ -1,0 +1,18 @@
+Music in the story viewer (assets/audio/maple-leaf-rag-loop.m4a)
+
+Title:        Maple Leaf Rag
+Composer:     Scott Joplin (1868-1917), composed and published 1899
+Performer:    United States Marine Band
+Recorded:     October 1906
+Source:       Wikimedia Commons,
+              https://commons.wikimedia.org/wiki/File:1906_-_Scott_Joplin%27s_Maple_Leaf_Rag_(1899)_played_by_the_United_States_Marine_Band.ogg
+              (originally from https://archive.org/details/UnitedStatesMarineBand)
+Licence:      Public domain.
+              Composition: the composer died in 1917, more than 70 years ago.
+              Recording: a work of the United States Marine Corps band, a US federal
+              government work (Commons tag PD-USGov-Military-Marine Corps), and a sound
+              recording published before 1926 (PD-US-record-expired). In Switzerland,
+              performers' and producers' rights last 70 years from the performance (1906).
+
+What we changed: cut one musical repeat (48.8 s) into a seamless loop, mono,
+gentle hiss reduction and loudness levelling, AAC 64 kbit/s.
