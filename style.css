@@ -922,6 +922,18 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .ra-glow { fill: var(--orange); }
 .ra-leg { fill: none; stroke: var(--ink); stroke-width: 1.1; }
 .ra-speed { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-linecap: round; }
+/* Ygor's AI lantern stands on the line beside his boots (Nick, 27 Oct): the app's lantern in ink, amber glass with
+   ink "AI" letters, a soft cream halo. Gradients live in the .ra-sprite defs (#ra-lamp-g, #ra-halo-g). */
+.ra-lamp-ring { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
+.ra-lamp-bail { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; }
+.ra-lamp-glass { fill: var(--cream); stroke: var(--ink); stroke-width: 1.7; }
+.ra-lamp-lit { fill: url(#ra-lamp-g); }
+.ra-lamp-ai { fill: var(--ink); }
+.ra-lamp-halo { fill: url(#ra-halo-g); }
+.ra-lamp-g0 { stop-color: #FFE7A3; }
+.ra-lamp-g1 { stop-color: #F7A23C; }
+.ra-halo-g0 { stop-color: var(--cream); stop-opacity: 0.7; }
+.ra-halo-g1 { stop-color: var(--cream); stop-opacity: 0; }
 @media (min-width: 900px) {
   .rules { grid-template-columns: repeat(6, 1fr); column-gap: 40px; }
   .rules li { grid-column: span 2; }
