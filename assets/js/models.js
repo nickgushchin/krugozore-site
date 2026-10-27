@@ -155,9 +155,16 @@
         '<g class="yg-head">' +
           '<ellipse cx="607" cy="326.5" rx="50.11" ry="5.5" transform="rotate(-12.09 607 326.5)" fill="url(#yg-cav)"/>' +
           '<g clip-path="url(#yg-clip)">' +
-            '<g transform="translate(607 361)"><g class="yg-in"><circle class="yg-disc" r="20"/><image class="yg-in-img" x="-13" y="-13" width="26" height="26"/></g></g>' +
+            '<g transform="translate(607 380)"><g class="yg-in"><circle class="yg-disc" r="40"/><image class="yg-in-img" x="-27" y="-27" width="54" height="54"/></g></g>' +
           '</g>' +
           '<path class="yg-ink" d="' + HEAD_BASE + '"/>' +
+          // the mouth, under the nose where the icon's face turns down to the chin: a flat line while
+          // the lid is open, a smile once the new model is in, and a mouth that opens as he talks
+          '<g class="yg-mouth">' +
+            '<path class="yg-m-open" d="M680 388.6Q667 395 656.2 381.6Q661 404 680.6 400z"/>' +
+            '<path class="yg-m-flat" d="M679.5 388.6Q669 389.4 660 387.4"/>' +
+            '<path class="yg-m-smile" d="M680 388.6Q667 395 656.2 381.6"/>' +
+          '</g>' +
           '<circle class="yg-eye" cx="643.5" cy="341.2" r="6"/>' +
           '<g class="yg-spark"><path d="M607 294v-9M587 298l-5-7M627 295l5-7M572 308h-7M642 303l7-3"/></g>' +
           '<g class="yg-lid">' +
@@ -165,7 +172,7 @@
             '<path class="yg-rim" d="M558 337A50.11 5.5-12.09 0 0 656 316"/>' +
           '</g>' +
           '<g clip-path="url(#yg-clip)">' +
-            '<g transform="translate(607 361)"><g class="yg-out"><circle class="yg-disc" r="20"/><image class="yg-out-img" x="-13" y="-13" width="26" height="26"/></g></g>' +
+            '<g transform="translate(607 380)"><g class="yg-out"><circle class="yg-disc" r="40"/><image class="yg-out-img" x="-27" y="-27" width="54" height="54"/></g></g>' +
           '</g>' +
         '</g>' +
       '</svg>' +

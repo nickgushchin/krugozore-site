@@ -491,9 +491,13 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .yg-ink { fill: var(--ink); }
 .yg-eye { fill: var(--cream); }
 .yg-rim { fill: none; stroke: #C0501A; stroke-width: 1.6; opacity: 0; }
-.yg-disc { fill: #FBF8F1; stroke: var(--ink); stroke-width: 2.4; }
+.yg-disc { fill: #FBF8F1; stroke: var(--ink); stroke-width: 3.2; }
 .yg-spark path { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; }
-.yg-lid, .yg-out, .yg-in, .yg-head, .yg-eye, .yg-spark { transform-box: view-box; }
+.yg-lid, .yg-out, .yg-in, .yg-head, .yg-eye, .yg-spark, .yg-m-open, .yg-m-smile { transform-box: view-box; }
+.yg-m-flat, .yg-m-smile { fill: none; stroke: var(--cream); stroke-width: 2.6; stroke-linecap: round; }
+.yg-m-open { fill: #B4501A; stroke: var(--cream); stroke-width: 2.2; stroke-linejoin: round; transform-origin: 668px 389px; transform: scaleY(0); }
+.yg-m-smile { transform-origin: 668px 388px; }
+.yg-m-flat { opacity: 0; }
 .yg-lid { transform-origin: 558px 337px; }
 .yg-head { transform-origin: 585px 425px; }
 .yg-eye { transform-origin: 643.5px 341.2px; }
@@ -528,6 +532,9 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .brain .yg-in { animation: yg-in var(--yg-d) infinite; }
 .brain .yg-head { animation: yg-nod var(--yg-d) infinite; }
 .brain .yg-rim { animation: yg-rim var(--yg-d) infinite; }
+.brain .yg-m-flat { animation: yg-m-flat var(--yg-d) infinite; }
+.brain .yg-m-smile { animation: yg-m-smile var(--yg-d) infinite; }
+.brain .yg-m-open { animation: yg-m-open var(--yg-d) infinite; }
 .brain .yg-eye { animation: yg-blink var(--yg-d) infinite; }
 .brain .yg-spark { animation: yg-spark var(--yg-d) infinite; }
 .brain .yg-say { animation: yg-say var(--yg-d) infinite; }
@@ -538,7 +545,7 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
   3% { transform: rotate(4deg); animation-timing-function: cubic-bezier(.2, .9, .25, 1); }
   11% { transform: rotate(-108deg); animation-timing-function: ease-in-out; }
   14% { transform: rotate(-96deg); animation-timing-function: ease-in-out; }
-  17%, 29% { transform: rotate(-101deg); animation-timing-function: cubic-bezier(.55, 0, .9, .45); }
+  17%, 30% { transform: rotate(-101deg); animation-timing-function: cubic-bezier(.55, 0, .9, .45); }
   35.5% { transform: rotate(4deg); animation-timing-function: ease-out; }
   38.5% { transform: rotate(-5deg); animation-timing-function: ease-in-out; }
   41.5%, 100% { transform: rotate(0); }
@@ -546,15 +553,28 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 @keyframes yg-rim { 0%, 2% { opacity: 0; } 8%, 31% { opacity: 1; } 35%, 100% { opacity: 0; } }
 @keyframes yg-out {
   0%, 4% { transform: translate(0, 0) rotate(0) scale(1); opacity: 1; animation-timing-function: cubic-bezier(.15, .85, .3, 1); }
-  11% { transform: translate(-6px, -96px) rotate(-14deg) scale(1.06); opacity: 1; animation-timing-function: cubic-bezier(.45, 0, .85, .55); }
-  17% { opacity: 1; }
-  21%, 100% { transform: translate(-130px, -70px) rotate(-230deg) scale(.5); opacity: 0; }
+  10% { transform: translate(-4px, -104px) rotate(-14deg) scale(1.04); opacity: 1; animation-timing-function: cubic-bezier(.45, 0, .85, .55); }
+  14% { opacity: 1; }
+  17%, 100% { transform: translate(-175px, -90px) rotate(-230deg) scale(.4); opacity: 0; }
 }
 @keyframes yg-in {
-  0%, 15.5% { transform: translate(0, -80px) scale(.3); opacity: 0; animation-timing-function: cubic-bezier(.2, 1.4, .4, 1); }
-  21% { transform: translate(0, -72px) scale(1); opacity: 1; animation-timing-function: ease-in-out; }
-  26% { transform: translate(0, -78px) rotate(-6deg) scale(1); opacity: 1; animation-timing-function: cubic-bezier(.6, 0, .9, .5); }
+  0%, 16.5% { transform: translate(0, -108px) scale(.3); opacity: 0; animation-timing-function: cubic-bezier(.2, 1.4, .4, 1); }
+  22% { transform: translate(0, -100px) scale(1); opacity: 1; animation-timing-function: ease-in-out; }
+  26.5% { transform: translate(0, -105px) rotate(-6deg) scale(1); opacity: 1; animation-timing-function: cubic-bezier(.6, 0, .9, .5); }
   32%, 100% { transform: translate(0, 0) rotate(0) scale(1); opacity: 1; }
+}
+/* the mouth: neutral while the lid is open, a smile once the model is in, talking with the bubble */
+@keyframes yg-m-flat { 0% { opacity: 0; } 3%, 36% { opacity: 1; } 39.5%, 100% { opacity: 0; } }
+@keyframes yg-m-smile {
+  0% { opacity: 1; transform: none; } 3%, 36% { opacity: 0; transform: scale(.7); animation-timing-function: cubic-bezier(.2, 1.6, .4, 1); }
+  41% { opacity: 1; transform: scale(1.12); } 44%, 100% { opacity: 1; transform: none; }
+}
+@keyframes yg-m-open {
+  0%, 46% { transform: scaleY(0); }
+  49% { transform: scaleY(1); } 52% { transform: scaleY(.15); }
+  55% { transform: scaleY(.85); } 58% { transform: scaleY(.1); }
+  61% { transform: scaleY(1); } 64.5% { transform: scaleY(.2); }
+  68% { transform: scaleY(.75); } 71.5%, 100% { transform: scaleY(0); }
 }
 @keyframes yg-nod {
   /* a small dip as the lid opens, a bump as the model lands, then nods while he speaks */
