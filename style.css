@@ -895,7 +895,7 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .rules p { margin: 0; font-size: 16px; line-height: 1.55; }
 /* one small Ygor picture per rule: floated beside the heading on phones; on desktop, where the
    columns are narrow, it sits top right across from the numeral and the heading gets the full width */
-.rule-art { float: right; width: 84px; height: 84px; margin: -6px -2px 8px 14px; overflow: visible; }
+.rule-art { float: right; width: 96px; height: 96px; margin: -8px -4px 6px 12px; overflow: visible; }
 @media (min-width: 900px) {
   .rules li { padding-left: 4px; }
   .rules li::before { top: 26px; font-size: 30px; width: auto; }
@@ -906,17 +906,19 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 .ra-ring { fill: none; stroke: var(--ink); stroke-width: 2.6; }
 .ra-ink { fill: var(--ink); }
 .ra-eye { fill: var(--cream); }
-.ra-smile { fill: none; stroke: var(--cream); stroke-width: 5; stroke-linecap: round; }
-.ra-line { fill: var(--cream); stroke: var(--ink); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
-.ra-fill { fill: var(--ink); }
-.ra-dot { fill: var(--ink); }
 .ra-acc { fill: var(--orange); }
-.ra-edge { stroke: var(--ink); stroke-width: 2.6; stroke-linejoin: round; }
-.ra-knob { fill: var(--cream); stroke: var(--ink); stroke-width: 2.6; }
-.ra-spark { fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; }
-.ra-halo { fill: none; stroke: var(--cream); stroke-width: 9; stroke-linecap: round; }
-.ra-strike { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
-.ra-dash { fill: none; stroke: var(--ink); stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 0.1 5.5; }
+.ra-edge { stroke: var(--ink); stroke-width: 3.4; stroke-linejoin: round; }
+.ra-phone { fill: var(--cream); stroke: var(--ink); stroke-width: 3.8; stroke-linejoin: round; }
+.ra-glass { fill: url(#ra-glow); stroke: var(--ink); stroke-width: 1.7; }
+.ra-ai { fill: #fff; fill-rule: evenodd; }
+.ra-wire { stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
+.ra-shackle { fill: none; stroke: var(--ink); stroke-width: 3.2; stroke-linecap: round; }
+.ra-stick { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
+.ra-halo { fill: none; stroke: var(--cream); stroke-width: 12; stroke-linecap: round; }
+.ra-strike { fill: none; stroke: var(--ink); stroke-width: 6; stroke-linecap: round; }
+.ra-spark { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ra-dash { fill: none; stroke: var(--ink); stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 0.1 5.2; }
+.ra-ghost { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-dasharray: 1.6 2; opacity: .6; }
 @media (min-width: 900px) {
   .rules { grid-template-columns: repeat(6, 1fr); column-gap: 40px; }
   .rules li { grid-column: span 2; }
