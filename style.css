@@ -893,34 +893,26 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
 }
 .rules h3 { font-size: 23px; line-height: 1.15; font-weight: 800; margin-bottom: 8px; }
 .rules p { margin: 0; font-size: 16px; line-height: 1.55; }
-/* one small Ygor picture per rule, floated beside the heading so it never adds height to the card;
-   the circle shape lets the text wrap close around it (Nick, 27 Oct: smaller, fit the card) */
-.rule-art { float: right; width: 76px; height: 76px; margin: -4px -2px 6px 10px; overflow: visible; shape-outside: circle(50%); }
+/* Ygor stands on each rule's bottom line, ink on the orange like the app's onboarding art (Nick, 27 Oct v4).
+   He gets his own band under the text at the right, so the text keeps its full measure and never meets him.
+   The svg's bottom edge is his soles; the negative margin cancels the li's bottom padding so they touch the border. */
+.rules li { display: grid; grid-template-rows: auto auto 1fr; }
+.rule-art { grid-row: 3; justify-self: end; align-self: end; display: block; width: auto; height: 74px; margin: 4px 0 -22px; }
 @media (min-width: 900px) {
-  .rule-art { width: 80px; height: 80px; margin: -6px 0 6px 12px; }
+  .rule-art { height: 86px; margin-top: 8px; }
 }
 .privacy .ra-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
-.ra-disc { fill: var(--cream); }
-.ra-ring { fill: none; stroke: var(--ink); stroke-width: 2.6; }
 .ra-ink { fill: var(--ink); }
 .ra-eye { fill: var(--cream); }
-.ra-acc { fill: var(--orange); }
-.ra-edge { stroke: var(--ink); stroke-width: 3.4; stroke-linejoin: round; }
-.ra-phone { fill: var(--cream); stroke: var(--ink); stroke-width: 3.8; stroke-linejoin: round; }
-.ra-shackle { fill: none; stroke: var(--ink); stroke-width: 3.2; stroke-linecap: round; }
-.ra-dash { fill: none; stroke: var(--ink); stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 0.1 5.2; }
 .ra-cream { fill: var(--cream); }
-.ra-key { fill: var(--ink); }
-.ra-key-ring { fill: none; stroke: var(--ink); stroke-width: 3; }
-.ra-okey { fill: var(--orange); }
-.ra-okey-ring { fill: none; stroke: var(--orange); stroke-width: 3; }
-.ra-bigshackle { fill: none; stroke: var(--ink); stroke-width: 5.4; }
-.ra-cloud { fill: var(--cream); stroke: var(--ink); stroke-width: 4.2; stroke-linejoin: round; }
-.ra-strike-edge { fill: none; stroke: var(--ink); stroke-width: 9.6; stroke-linecap: round; }
-.ra-strike-acc { fill: none; stroke: var(--orange); stroke-width: 4.4; stroke-linecap: round; }
-.ra-outline { fill: none; stroke: var(--ink); stroke-width: 2.2; }
-.ra-edge2 { stroke: var(--ink); stroke-width: 2.2; stroke-linejoin: round; }
-.ra-handle { fill: none; stroke: var(--ink); stroke-width: 3.6; stroke-linecap: round; }
+.ra-cream-ring { fill: none; stroke: var(--cream); stroke-width: 2.8; }
+.ra-shackle { fill: none; stroke: var(--ink); stroke-width: 4; }
+.ra-frame { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.ra-cloud { fill: var(--cream); stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.ra-strike-gap { fill: none; stroke: var(--orange); stroke-width: 9; stroke-linecap: round; }
+.ra-strike { fill: none; stroke: var(--ink); stroke-width: 4.2; stroke-linecap: round; }
+.ra-handle { fill: none; stroke: var(--ink); stroke-width: 3.4; stroke-linecap: round; }
+.ra-cut { stroke: var(--orange); stroke-width: 1.6; paint-order: stroke; }
 @media (min-width: 900px) {
   .rules { grid-template-columns: repeat(6, 1fr); column-gap: 40px; }
   .rules li { grid-column: span 2; }
