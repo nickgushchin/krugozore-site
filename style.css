@@ -270,9 +270,11 @@ a.store-badge:focus-visible { outline: 3px solid var(--orange); outline-offset: 
   -webkit-mask-composite: source-in;
   mask: repeating-conic-gradient(#000 0 10deg, transparent 10deg 15deg), radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px));
   mask-composite: intersect;
-  animation: ring-turn 14s linear infinite;
+  animation: ring-turn 22.4s linear infinite;
 }
-.ring:hover .ring-pic::before { animation-duration: 4s; }
+.ring:hover .ring-pic::before { animation-duration: 6.4s; }
+/* watched: the dashes keep turning; a grey inner circle marks it (this page view only) */
+.ring.is-seen .ring-pic .crop { border-color: rgba(244, 239, 228, 0.5); }
 @keyframes ring-turn { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .ring-pic::before { animation: none; } }
 .ring-pic .crop { border: 2.5px solid var(--ink); }
